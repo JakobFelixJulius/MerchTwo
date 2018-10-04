@@ -1,5 +1,5 @@
 //
-//  ThirdTableViewCell.swift
+//  SecondTableViewSubCell.swift
 //  MerchTwo
 //
 //  Created by JSudau on 04.10.18.
@@ -8,16 +8,10 @@
 
 import UIKit
 
-class ThirdTableViewCell: UITableViewCell {
-	
-	weak var parentViewController : ThirdTableViewController?
-	@IBOutlet weak var cellImage: UIImageView!
-	
+class SecondTableViewSubCell: UITableViewCell {
+
 	override func awakeFromNib() {
 		super.awakeFromNib()
-		
-		self.cellImage.layer.cornerRadius = self.cellImage.frame.size.width / 2
-		self.cellImage.clipsToBounds = true
 	}
 	
 	override func setSelected(_ selected: Bool, animated: Bool) {
@@ -26,3 +20,5 @@ class ThirdTableViewCell: UITableViewCell {
 		// Configure the view for the selected state
 	}
 }
+
+

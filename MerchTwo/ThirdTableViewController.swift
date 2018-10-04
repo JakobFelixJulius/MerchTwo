@@ -25,6 +25,7 @@ class ThirdTableViewController: UITableViewController {
 	func setupNavBar() {
 		self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(tapButton))
 		self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(tapButton))
+		self.navigationItem.title = "Bestand"
 		
 		navigationController?.navigationBar.prefersLargeTitles = true
 		
