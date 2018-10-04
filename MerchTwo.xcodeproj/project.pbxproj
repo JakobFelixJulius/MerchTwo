@@ -14,6 +14,7 @@
 		B235D11B2165F3C900EDF439 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B235D11A2165F3C900EDF439 /* Assets.xcassets */; };
 		B235D11E2165F3C900EDF439 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B235D11C2165F3C900EDF439 /* LaunchScreen.storyboard */; };
 		B26A18642165FB1E00D15941 /* ThirdTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26A18632165FB1E00D15941 /* ThirdTableViewController.swift */; };
+		B26A186621661F0000D15941 /* FirstTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26A186521661F0000D15941 /* FirstTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		B235D11D2165F3C900EDF439 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B235D11F2165F3C900EDF439 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B26A18632165FB1E00D15941 /* ThirdTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTableViewController.swift; sourceTree = "<group>"; };
+		B26A186521661F0000D15941 /* FirstTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 			children = (
 				B235D1112165F3C900EDF439 /* AppDelegate.swift */,
 				B235D1132165F3C900EDF439 /* FirstTableViewController.swift */,
+				B26A186521661F0000D15941 /* FirstTableViewCell.swift */,
 				B235D1152165F3C900EDF439 /* SecondTableViewController.swift */,
 				B26A18632165FB1E00D15941 /* ThirdTableViewController.swift */,
 				B235D1172165F3C900EDF439 /* Main.storyboard */,
@@ -144,6 +147,7 @@
 			files = (
 				B235D1162165F3C900EDF439 /* SecondTableViewController.swift in Sources */,
 				B235D1122165F3C900EDF439 /* AppDelegate.swift in Sources */,
+				B26A186621661F0000D15941 /* FirstTableViewCell.swift in Sources */,
 				B26A18642165FB1E00D15941 /* ThirdTableViewController.swift in Sources */,
 				B235D1142165F3C900EDF439 /* FirstTableViewController.swift in Sources */,
 			);
