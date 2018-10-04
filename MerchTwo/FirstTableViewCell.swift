@@ -14,12 +14,14 @@ class FirstTableViewCell: UITableViewCell {
 	@IBOutlet weak var cellTitle: UILabel!
 	weak var parentViewController : FirstTableViewController?
 	var itemOptions = [String]()
+    var isPromo: Bool!
 	
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		
 		self.cellImage.layer.cornerRadius = self.cellImage.frame.size.width / 2
 		self.cellImage.clipsToBounds = true
+        isPromo = false
 	}
 	
 	override func setSelected(_ selected: Bool, animated: Bool) {
@@ -39,17 +41,28 @@ class FirstTableViewCell: UITableViewCell {
 	
 	@objc func switchValueDidChange(sender: UISwitch!) {
 		print("Switch Value : \(sender.isOn)")
+        isPromo = sender.isOn
 		
 	}
 	
-	@IBAction func sell(_ sender: Any) {
+	@IBAction func sell(_ sender: UIStepper) {
+        
+        var isAdd = false
+        
+        if sender.value == 1.0 {
+            isAdd = true
+        }else if sender.value == -1.0 {
+            isAdd = false
+        }
+        
+        
 		let alert = UIAlertController(title: "Promo", message: " ", preferredStyle: .actionSheet)
 		
 		alert.view.addSubview(createSwitch())
 		
 		for option in itemOptions {
 			alert.addAction(UIAlertAction(title: option, style: .default , handler:{ (UIAlertAction)in
-				print("User click \(option) button")
+                print("User click \(option) button with promo set to \(self.isPromo!) and isAdd set to \(isAdd)")
 			}))
 		}
 		
@@ -66,6 +79,8 @@ class FirstTableViewCell: UITableViewCell {
 		parentViewController?.present(alert, animated: true, completion: {
 			print("completion block")
 		})
+        
+        sender.value = 0
 		
 	}
 }

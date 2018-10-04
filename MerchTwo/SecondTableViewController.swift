@@ -67,7 +67,7 @@ class SecondTableViewController: UITableViewController {
         let dataIndex = indexPath.row - 1
 		if indexPath.row == 0 {
 			let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? SecondTableViewCell
-			cell?.parentViewController = self
+			cell?.parentSecondTableViewController = self
 			cell?.cellTitle.text = tableViewData[indexPath.section].title
 			return cell!
 		} else {

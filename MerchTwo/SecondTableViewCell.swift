@@ -10,7 +10,8 @@ import UIKit
 
 class SecondTableViewCell: UITableViewCell {
 	
-	weak var parentViewController : SecondTableViewController?
+	weak var parentSecondTableViewController : SecondTableViewController?
+    weak var parentThirdTableViewController : ThirdTableViewController?
 	@IBOutlet weak var cellImage: UIImageView!
 	@IBOutlet weak var cellTitle: UILabel!
 	@IBOutlet weak var cellSubtitle: UILabel!
@@ -18,6 +19,12 @@ class SecondTableViewCell: UITableViewCell {
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		
+        if parentSecondTableViewController != nil {
+            print("second")
+        } else if parentThirdTableViewController != nil {
+            print("third")
+        }
+        
 		self.cellImage.layer.cornerRadius = self.cellImage.frame.size.width / 2
 		self.cellImage.clipsToBounds = true
 	}
