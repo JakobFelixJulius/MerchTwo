@@ -11,10 +11,20 @@ import UIKit
 class FirstTableViewController: UITableViewController {
 
 	let cellContent = ["some", "items", "that", "we", "want", "to", "sell"]
+    
+    var tableViewData = [cellData]()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupNavBar()
+        
+        tableViewData = [cellData(opened: false, title: "some", sectionData: ["1", "2", "3"]),
+                         cellData(opened: false, title: "items", sectionData: ["4", "5", "6"]),
+                         cellData(opened: false, title: "that", sectionData: ["7", "8", "9"]),
+                         cellData(opened: false, title: "we", sectionData: ["1", "2", "3"]),
+                         cellData(opened: false, title: "want", sectionData: ["4", "5", "6"]),
+                         cellData(opened: false, title: "to", sectionData: ["7", "8", "9"]),
+                         cellData(opened: false, title: "sell", sectionData: ["1", "2", "3"]),]
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -63,21 +73,26 @@ class FirstTableViewController: UITableViewController {
 		})
 	}
 	
-	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return cellContent.count
-	}
-	
-	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? FirstTableViewCell
-		//let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "Cell")
-		
-		//cell!.textLabel?.text = cellContent[indexPath.row]
-		
-		cell?.parentViewController = self
-		cell?.itemOptions = ["XS", "S", "M", "L", "XL", "XXL"]
-		
-		return cell!
-	}
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return tableViewData.count
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if tableViewData[section].opened {
+            return tableViewData[section].sectionData.count + 1
+        } else {
+            return 1
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? FirstTableViewCell
+        cell?.parentViewController = self
+        cell?.cellTitle.text = tableViewData[indexPath.section].title
+        cell?.itemOptions = ["XS", "S", "M", "L", "XL", "XXL"]
+        return cell!
+    }
 	
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		return 85
