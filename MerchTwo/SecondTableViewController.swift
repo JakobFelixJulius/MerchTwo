@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  SecondViewController.swift
 //  MerchTwo
 //
 //  Created by JSudau on 04.10.18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+class SecondTableViewController: UITableViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
