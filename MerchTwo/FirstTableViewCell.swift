@@ -13,6 +13,7 @@ class FirstTableViewCell: UITableViewCell {
 	@IBOutlet weak var cellImage: UIImageView!
 	@IBOutlet weak var cellTitle: UILabel!
 	weak var parentViewController : FirstTableViewController?
+	var itemOptions = [String]()
 	
 	override func awakeFromNib() {
 		super.awakeFromNib()
@@ -25,36 +26,40 @@ class FirstTableViewCell: UITableViewCell {
 		// Configure the view for the selected state
 	}
 	
+	func createSwitch () -> UISwitch {
+		let switchControl = UISwitch(frame: CGRect(x:125, y:38, width:0, height:0))
+		switchControl.isOn = false
+		switchControl.setOn(false, animated: false)
+		switchControl.addTarget(self, action: #selector(switchValueDidChange), for: .valueChanged)
+		return switchControl
+		
+	}
+	
+	@objc func switchValueDidChange(sender: UISwitch!) {
+		print("Switch Value : \(sender.isOn)")
+		
+	}
+	
 	@IBAction func sell(_ sender: Any) {
-		let alert = UIAlertController(title: "Label", message: "Wähle die zu verkaufende Option", preferredStyle: .actionSheet)
+		let alert = UIAlertController(title: "Promo", message: " ", preferredStyle: .actionSheet)
 		
-		alert.addAction(UIAlertAction(title: "XS", style: .default , handler:{ (UIAlertAction)in
-			print("User click XS button")
-		}))
+		alert.view.addSubview(createSwitch())
 		
-		alert.addAction(UIAlertAction(title: "S", style: .default , handler:{ (UIAlertAction)in
-			print("User click S button")
-		}))
-		
-		alert.addAction(UIAlertAction(title: "M", style: .default , handler:{ (UIAlertAction)in
-			print("User click M button")
-		}))
-		
-		alert.addAction(UIAlertAction(title: "L", style: .default , handler:{ (UIAlertAction)in
-			print("User click L button")
-		}))
-		
-		alert.addAction(UIAlertAction(title: "XL", style: .default , handler:{ (UIAlertAction)in
-			print("User click XL button")
-		}))
-		
-		alert.addAction(UIAlertAction(title: "XXL", style: .default , handler:{ (UIAlertAction)in
-			print("User click XXL button")
-		}))
+		for option in itemOptions {
+			alert.addAction(UIAlertAction(title: option, style: .default , handler:{ (UIAlertAction)in
+				print("User click \(option) button")
+			}))
+		}
 		
 		alert.addAction(UIAlertAction(title: "Abbruch", style: .cancel, handler:{ (UIAlertAction)in
 			print("User click Dismiss button")
 		}))
+		
+		if let popoverController = alert.popoverPresentationController {
+			popoverController.sourceView = parentViewController?.view
+			popoverController.sourceRect = CGRect(x: (parentViewController?.view.bounds.midX)!, y: (parentViewController?.view.bounds.midY)!, width: 0, height: 0)
+			popoverController.permittedArrowDirections = []
+		}
 		
 		parentViewController?.present(alert, animated: true, completion: {
 			print("completion block")

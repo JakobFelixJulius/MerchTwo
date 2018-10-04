@@ -98,12 +98,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="UCy-UM-e4I">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="Cell" rowHeight="85" id="Vs6-cq-28j" customClass="SecondTableViewCell" customModule="MerchTwo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="85"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UCy-UM-e4I" id="geU-xT-e2Z">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vs6-cq-28j" id="yX7-wU-MbM">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="84.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tshirt2" translatesAutoresizingMaskIntoConstraints="NO" id="hvx-HG-IJ0">
+                                            <rect key="frame" x="16" y="12" width="60" height="60.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="60" id="70S-nY-vQK"/>
+                                                <constraint firstAttribute="width" constant="60" id="FN9-MH-24b"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFE-Fz-9fq">
+                                            <rect key="frame" x="84" y="32" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="hvx-HG-IJ0" firstAttribute="leading" secondItem="yX7-wU-MbM" secondAttribute="leadingMargin" id="DD6-iH-fru"/>
+                                        <constraint firstItem="XFE-Fz-9fq" firstAttribute="leading" secondItem="hvx-HG-IJ0" secondAttribute="trailing" constant="8" id="kUc-4e-YLa"/>
+                                        <constraint firstItem="XFE-Fz-9fq" firstAttribute="centerY" secondItem="yX7-wU-MbM" secondAttribute="centerY" id="uPA-Cq-axH"/>
+                                        <constraint firstItem="hvx-HG-IJ0" firstAttribute="centerY" secondItem="yX7-wU-MbM" secondAttribute="centerY" id="vyG-iN-skY"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -116,9 +137,9 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KNw-cD-zNh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1942" y="11"/>
+            <point key="canvasLocation" x="1941.5999999999999" y="10.344827586206897"/>
         </scene>
-        <!--MerchTwo-->
+        <!--Bestand-->
         <scene sceneID="2dK-LI-A4k">
             <objects>
                 <tableViewController id="NwP-bb-b6b" customClass="ThirdTableViewController" customModule="MerchTwo" customModuleProvider="target" sceneMemberID="viewController">
@@ -127,12 +148,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="uS5-xx-mRh">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="Cell" rowHeight="85" id="V91-TV-T7B" customClass="ThirdTableViewCell" customModule="MerchTwo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="85"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uS5-xx-mRh" id="shL-of-wKs">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="V91-TV-T7B" id="DC7-iM-ZdE">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="84.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tshirt2" translatesAutoresizingMaskIntoConstraints="NO" id="ScM-0C-ecc">
+                                            <rect key="frame" x="16" y="12" width="60" height="60.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="60" id="iB8-O5-bFb"/>
+                                                <constraint firstAttribute="width" constant="60" id="wJv-NF-QQX"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YYz-w8-4Jt">
+                                            <rect key="frame" x="84" y="32" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="ScM-0C-ecc" firstAttribute="centerY" secondItem="DC7-iM-ZdE" secondAttribute="centerY" id="7kd-o2-A5l"/>
+                                        <constraint firstItem="YYz-w8-4Jt" firstAttribute="leading" secondItem="ScM-0C-ecc" secondAttribute="trailing" constant="8" id="9XI-Cc-led"/>
+                                        <constraint firstItem="ScM-0C-ecc" firstAttribute="leading" secondItem="DC7-iM-ZdE" secondAttribute="leadingMargin" id="ra3-DD-n6o"/>
+                                        <constraint firstItem="YYz-w8-4Jt" firstAttribute="centerY" secondItem="DC7-iM-ZdE" secondAttribute="centerY" id="uIm-VM-hRs"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -141,7 +183,7 @@
                             <outlet property="delegate" destination="NwP-bb-b6b" id="8yM-ID-ang"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="MerchTwo" id="JBs-tP-R7D"/>
+                    <navigationItem key="navigationItem" title="Bestand" id="JBs-tP-R7D"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HOt-QV-ox4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

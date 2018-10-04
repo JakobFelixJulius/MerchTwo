@@ -48,6 +48,7 @@ class FirstTableViewController: UITableViewController {
 		//cell!.textLabel?.text = cellContent[indexPath.row]
 		
 		cell?.parentViewController = self
+		cell?.itemOptions = ["XS", "S", "M", "L", "XL", "XXL"]
 		
 		return cell!
 	}
