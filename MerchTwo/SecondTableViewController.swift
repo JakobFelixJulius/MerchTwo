@@ -8,26 +8,17 @@
 
 import UIKit
 
-struct cellData {
-	var opened = Bool()
-	var title = String()
-	var sectionData = [String]()
-}
-
 class SecondTableViewController: UITableViewController {
 	
-	var tableViewData = [cellData]()
+	var tableViewData = [itemData]()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupNavBar()
-		tableViewData = [cellData(opened: false, title: "some", sectionData: ["1", "2", "3"]),
-						 cellData(opened: false, title: "items", sectionData: ["4", "5", "6"]),
-						 cellData(opened: false, title: "that", sectionData: ["7", "8", "9"]),
-						 cellData(opened: false, title: "we", sectionData: ["1", "2", "3"]),
-						 cellData(opened: false, title: "want", sectionData: ["4", "5", "6"]),
-						 cellData(opened: false, title: "to", sectionData: ["7", "8", "9"]),
-						 cellData(opened: false, title: "sell", sectionData: ["1", "2", "3"]),]
+        
+        if let data = UserDefaults.standard.value(forKey:"tableViewData") as? Data {
+            tableViewData = try! PropertyListDecoder().decode(Array<itemData>.self, from: data)
+        }
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -57,7 +48,7 @@ class SecondTableViewController: UITableViewController {
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		
 		if tableViewData[section].opened {
-			return tableViewData[section].sectionData.count + 1
+			return tableViewData[section].options.count + 1
 		} else {
 			return 1
 		}
@@ -68,11 +59,12 @@ class SecondTableViewController: UITableViewController {
 		if indexPath.row == 0 {
 			let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? SecondTableViewCell
 			cell?.parentSecondTableViewController = self
+            cell?.cellImage.image = UIImage(data: tableViewData[indexPath.section].imageData)
 			cell?.cellTitle.text = tableViewData[indexPath.section].title
 			return cell!
 		} else {
 			let cell = tableView.dequeueReusableCell(withIdentifier: "SubCell") as? SecondTableViewSubCell
-			cell?.textLabel?.text = tableViewData[indexPath.section].sectionData[dataIndex]
+			cell?.textLabel?.text = tableViewData[indexPath.section].options[dataIndex]
 			return cell!
 		}
 	}

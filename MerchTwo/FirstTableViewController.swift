@@ -8,23 +8,40 @@
 
 import UIKit
 
-class FirstTableViewController: UITableViewController {
+struct itemData: Codable {
+    var opened = Bool()
+    var imageData = Data()
+    var title = String()
+    var options = [String]()
+    var stock = [Int]()
+}
 
-	let cellContent = ["some", "items", "that", "we", "want", "to", "sell"]
+class FirstTableViewController: UITableViewController {
     
-    var tableViewData = [cellData]()
+    var tableViewData = [itemData]()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupNavBar()
         
-        tableViewData = [cellData(opened: false, title: "some", sectionData: ["1", "2", "3"]),
-                         cellData(opened: false, title: "items", sectionData: ["4", "5", "6"]),
-                         cellData(opened: false, title: "that", sectionData: ["7", "8", "9"]),
-                         cellData(opened: false, title: "we", sectionData: ["1", "2", "3"]),
-                         cellData(opened: false, title: "want", sectionData: ["4", "5", "6"]),
-                         cellData(opened: false, title: "to", sectionData: ["7", "8", "9"]),
-                         cellData(opened: false, title: "sell", sectionData: ["1", "2", "3"]),]
+        let image = UIImage(named: "tshirt1.png")
+        let imageData:Data = UIImagePNGRepresentation(image!)! as Data
+        
+        let image1 = UIImage(named: "tshirt2.png")
+        let imageData1:Data = UIImagePNGRepresentation(image1!)! as Data
+        
+        let image2 = UIImage(named: "tshirt3.png")
+        let imageData2:Data = UIImagePNGRepresentation(image2!)! as Data
+        
+        tableViewData = [itemData(opened: false, imageData: imageData, title: "some", options: ["a", "b", "c"], stock: [1, 2, 3]),
+                         itemData(opened: false, imageData: imageData1, title: "items", options: ["d", "e", "f"], stock: [1, 2, 3]),
+                         itemData(opened: false, imageData: imageData2, title: "that", options: ["g", "h", "i"], stock: [1, 2, 3]),
+                         itemData(opened: false, imageData: imageData, title: "we", options: ["j", "k", "l"], stock: [1, 2, 3]),
+                         itemData(opened: false, imageData: imageData1, title: "want", options: ["m", "n", "o"], stock: [1, 2, 3]),
+                         itemData(opened: false, imageData: imageData2, title: "to", options: ["p", "q", "r"], stock: [1, 2, 3]),
+                         itemData(opened: false, imageData: imageData, title: "sell", options: ["s", "t", "u"], stock: [1, 2, 3])]
+        
+        UserDefaults.standard.set(try? PropertyListEncoder().encode(tableViewData), forKey:"tableViewData")
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -80,7 +97,7 @@ class FirstTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if tableViewData[section].opened {
-            return tableViewData[section].sectionData.count + 1
+            return tableViewData[section].options.count + 1
         } else {
             return 1
         }
@@ -89,6 +106,7 @@ class FirstTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? FirstTableViewCell
         cell?.parentViewController = self
+        cell?.cellImage.image = UIImage(data: tableViewData[indexPath.section].imageData)
         cell?.cellTitle.text = tableViewData[indexPath.section].title
         cell?.itemOptions = ["XS", "S", "M", "L", "XL", "XXL"]
         return cell!
