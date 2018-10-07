@@ -10,13 +10,13 @@ import UIKit
 
 class ThirdTableViewController: UITableViewController {
     
-    var tableViewData = [itemData]()
+    var stockItemsData = [itemData]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
-        if let data = UserDefaults.standard.value(forKey:"tableViewData") as? Data {
-            tableViewData = try! PropertyListDecoder().decode(Array<itemData>.self, from: data)
+        if let data = UserDefaults.standard.value(forKey:"stockItemsData") as? Data {
+            stockItemsData = try! PropertyListDecoder().decode(Array<itemData>.self, from: data)
         }
     }
     
@@ -28,7 +28,7 @@ class ThirdTableViewController: UITableViewController {
     func setupNavBar() {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(tapButton))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(tapButton))
-        self.navigationItem.title = "Bestand"
+        self.navigationItem.title = "Stock"
         
         navigationController?.navigationBar.prefersLargeTitles = true
         
@@ -41,13 +41,13 @@ class ThirdTableViewController: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return tableViewData.count
+        return stockItemsData.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if tableViewData[section].opened {
-            return tableViewData[section].options.count + 1
+        if stockItemsData[section].opened {
+            return stockItemsData[section].options.count + 1
         } else {
             return 1
         }
@@ -58,24 +58,24 @@ class ThirdTableViewController: UITableViewController {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? SecondTableViewCell
             cell?.parentThirdTableViewController = self
-            cell?.cellImage.image = UIImage(data: tableViewData[indexPath.section].imageData)
-            cell?.cellTitle.text = tableViewData[indexPath.section].title
+            cell?.cellImage.image = UIImage(data: stockItemsData[indexPath.section].imageData)
+            cell?.cellTitle.text = stockItemsData[indexPath.section].title
             return cell!
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SubCell") as? SecondTableViewSubCell
-            cell?.textLabel?.text = tableViewData[indexPath.section].options[dataIndex]
+            cell?.textLabel?.text = stockItemsData[indexPath.section].options[dataIndex]
             return cell!
         }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0  {
-            if tableViewData[indexPath.section].opened == true {
-                tableViewData[indexPath.section].opened = false
+            if stockItemsData[indexPath.section].opened == true {
+                stockItemsData[indexPath.section].opened = false
                 let sections = IndexSet.init(integer: indexPath.section)
                 tableView.reloadSections(sections, with: .none)
             } else {
-                tableViewData[indexPath.section].opened = true
+                stockItemsData[indexPath.section].opened = true
                 let sections = IndexSet.init(integer: indexPath.section)
                 tableView.reloadSections(sections, with: .none)
             }

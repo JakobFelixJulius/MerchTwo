@@ -10,9 +10,11 @@ import UIKit
 
 class FirstTableViewCell: UITableViewCell {
 	
-	@IBOutlet weak var cellImage: UIImageView!
+    @IBOutlet weak var cellSold: UILabel!
+    @IBOutlet weak var cellImage: UIImageView!
 	@IBOutlet weak var cellTitle: UILabel!
-	weak var parentViewController : FirstTableViewController?
+	
+    weak var parentViewController : FirstTableViewController?
 	var itemOptions = [String]()
     var isPromo: Bool!
 	
@@ -63,6 +65,7 @@ class FirstTableViewCell: UITableViewCell {
 		for option in itemOptions {
 			alert.addAction(UIAlertAction(title: option, style: .default , handler:{ (UIAlertAction)in
                 print("User click \(option) button with promo set to \(self.isPromo!) and isAdd set to \(isAdd)")
+                self.parentViewController?.navigationItem.title = "Berlin: 536€"
 			}))
 		}
 		

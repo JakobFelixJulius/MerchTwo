@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D9167A721695A7C00195D04 /* structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9167A621695A7C00195D04 /* structs.swift */; };
 		B235D1122165F3C900EDF439 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B235D1112165F3C900EDF439 /* AppDelegate.swift */; };
 		B235D1142165F3C900EDF439 /* FirstTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B235D1132165F3C900EDF439 /* FirstTableViewController.swift */; };
 		B235D1162165F3C900EDF439 /* SecondTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B235D1152165F3C900EDF439 /* SecondTableViewController.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8D9167A621695A7C00195D04 /* structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = structs.swift; sourceTree = "<group>"; };
 		B235D10E2165F3C900EDF439 /* MerchTwo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MerchTwo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B235D1112165F3C900EDF439 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B235D1132165F3C900EDF439 /* FirstTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTableViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 				B26A186B216649CA00D15941 /* SecondTableViewSubCell.swift */,
 				B26A18632165FB1E00D15941 /* ThirdTableViewController.swift */,
 				B26A1869216637E700D15941 /* ThirdTableViewCell.swift */,
+				8D9167A621695A7C00195D04 /* structs.swift */,
 				B235D1172165F3C900EDF439 /* Main.storyboard */,
 				B235D11A2165F3C900EDF439 /* Assets.xcassets */,
 				B235D11C2165F3C900EDF439 /* LaunchScreen.storyboard */,
@@ -156,6 +159,7 @@
 			files = (
 				B26A186C216649CA00D15941 /* SecondTableViewSubCell.swift in Sources */,
 				B235D1162165F3C900EDF439 /* SecondTableViewController.swift in Sources */,
+				8D9167A721695A7C00195D04 /* structs.swift in Sources */,
 				B235D1122165F3C900EDF439 /* AppDelegate.swift in Sources */,
 				B26A186621661F0000D15941 /* FirstTableViewCell.swift in Sources */,
 				B26A18642165FB1E00D15941 /* ThirdTableViewController.swift in Sources */,

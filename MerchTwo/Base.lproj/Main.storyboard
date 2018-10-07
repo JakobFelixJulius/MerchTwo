@@ -39,8 +39,14 @@
                                                 <action selector="sell:" destination="7ke-5e-UID" eventType="valueChanged" id="ZFS-qy-rCc"/>
                                             </connections>
                                         </stepper>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5kf-Ud-KOs">
-                                            <rect key="frame" x="91" y="32" width="42" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5kf-Ud-KOs">
+                                            <rect key="frame" x="91" y="32" width="106" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="sold: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z3k-Ar-RzS">
+                                            <rect key="frame" x="205" y="32" width="52" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -49,14 +55,18 @@
                                     <constraints>
                                         <constraint firstItem="gjq-KZ-Ncc" firstAttribute="centerY" secondItem="TqN-FT-tgf" secondAttribute="centerY" id="1jC-0M-O5e"/>
                                         <constraint firstItem="eMj-2L-cXR" firstAttribute="leading" secondItem="TqN-FT-tgf" secondAttribute="leadingMargin" id="7SG-Jq-2hO"/>
+                                        <constraint firstItem="z3k-Ar-RzS" firstAttribute="centerY" secondItem="TqN-FT-tgf" secondAttribute="centerY" id="8T3-wT-w6A"/>
+                                        <constraint firstItem="5kf-Ud-KOs" firstAttribute="leading" secondItem="eMj-2L-cXR" secondAttribute="trailing" constant="10" id="Gfc-wY-PM3"/>
+                                        <constraint firstItem="5kf-Ud-KOs" firstAttribute="centerY" secondItem="TqN-FT-tgf" secondAttribute="centerY" id="RFS-Jl-INn"/>
                                         <constraint firstItem="gjq-KZ-Ncc" firstAttribute="trailing" secondItem="TqN-FT-tgf" secondAttribute="trailingMargin" id="bEk-U0-ip0"/>
+                                        <constraint firstItem="z3k-Ar-RzS" firstAttribute="leading" secondItem="5kf-Ud-KOs" secondAttribute="trailing" constant="8" id="ese-xZ-ipp"/>
                                         <constraint firstItem="eMj-2L-cXR" firstAttribute="centerY" secondItem="TqN-FT-tgf" secondAttribute="centerY" id="lRg-Lw-FVH"/>
-                                        <constraint firstItem="5kf-Ud-KOs" firstAttribute="leading" secondItem="eMj-2L-cXR" secondAttribute="trailing" constant="10" id="mzX-VT-dQr"/>
-                                        <constraint firstItem="5kf-Ud-KOs" firstAttribute="centerY" secondItem="TqN-FT-tgf" secondAttribute="centerY" id="ola-KZ-Wra"/>
+                                        <constraint firstItem="gjq-KZ-Ncc" firstAttribute="leading" secondItem="z3k-Ar-RzS" secondAttribute="trailing" constant="8" id="xOT-Op-q64"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="cellImage" destination="eMj-2L-cXR" id="k0r-J7-mky"/>
+                                    <outlet property="cellSold" destination="z3k-Ar-RzS" id="gx7-KQ-gwf"/>
                                     <outlet property="cellTitle" destination="5kf-Ud-KOs" id="tRY-2R-qTj"/>
                                 </connections>
                             </tableViewCell>
@@ -72,11 +82,11 @@
             </objects>
             <point key="canvasLocation" x="1941.5999999999999" y="-669.71514242878561"/>
         </scene>
-        <!--Überblick-->
+        <!--Sell-->
         <scene sceneID="g2s-sc-0y7">
             <objects>
                 <navigationController id="syy-MB-VRu" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Überblick" image="first" id="Ky2-zm-omx"/>
+                    <tabBarItem key="tabBarItem" title="Sell" image="first" id="Ky2-zm-omx"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Hbt-mu-YHN">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -171,11 +181,11 @@
             </objects>
             <point key="canvasLocation" x="1941.5999999999999" y="10.344827586206897"/>
         </scene>
-        <!--Verkauft-->
+        <!--Session-->
         <scene sceneID="Hkw-m3-Iv3">
             <objects>
                 <navigationController id="BfL-eS-Nit" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Verkauft" image="second" id="l8T-Tj-V8l"/>
+                    <tabBarItem key="tabBarItem" title="Session" image="second" id="l8T-Tj-V8l"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6gd-xA-nK4">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -289,11 +299,11 @@
             </objects>
             <point key="canvasLocation" x="1942" y="737"/>
         </scene>
-        <!--Bestand-->
+        <!--Stock-->
         <scene sceneID="zVb-kc-Cla">
             <objects>
                 <navigationController id="U1y-tE-dOz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Bestand" image="second" id="cwh-3k-tyY"/>
+                    <tabBarItem key="tabBarItem" title="Stock" image="second" id="cwh-3k-tyY"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6M9-Qf-5go">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
