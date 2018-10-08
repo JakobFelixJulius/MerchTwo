@@ -19,6 +19,7 @@
 		B26A1868216637DB00D15941 /* SecondTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26A1867216637DB00D15941 /* SecondTableViewCell.swift */; };
 		B26A186A216637E700D15941 /* ThirdTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26A1869216637E700D15941 /* ThirdTableViewCell.swift */; };
 		B26A186C216649CA00D15941 /* SecondTableViewSubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26A186B216649CA00D15941 /* SecondTableViewSubCell.swift */; };
+		B2A4EBDD216B632F00F1BF6E /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A4EBDC216B632F00F1BF6E /* ItemDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		B26A1867216637DB00D15941 /* SecondTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondTableViewCell.swift; sourceTree = "<group>"; };
 		B26A1869216637E700D15941 /* ThirdTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTableViewCell.swift; sourceTree = "<group>"; };
 		B26A186B216649CA00D15941 /* SecondTableViewSubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondTableViewSubCell.swift; sourceTree = "<group>"; };
+		B2A4EBDC216B632F00F1BF6E /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 				B26A18632165FB1E00D15941 /* ThirdTableViewController.swift */,
 				B26A1869216637E700D15941 /* ThirdTableViewCell.swift */,
 				8D9167A621695A7C00195D04 /* structs.swift */,
+				B2A4EBDC216B632F00F1BF6E /* ItemDetailViewController.swift */,
 				B235D1172165F3C900EDF439 /* Main.storyboard */,
 				B235D11A2165F3C900EDF439 /* Assets.xcassets */,
 				B235D11C2165F3C900EDF439 /* LaunchScreen.storyboard */,
@@ -157,6 +160,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2A4EBDD216B632F00F1BF6E /* ItemDetailViewController.swift in Sources */,
 				B26A186C216649CA00D15941 /* SecondTableViewSubCell.swift in Sources */,
 				B235D1162165F3C900EDF439 /* SecondTableViewController.swift in Sources */,
 				8D9167A721695A7C00195D04 /* structs.swift in Sources */,

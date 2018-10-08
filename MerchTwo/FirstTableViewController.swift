@@ -25,15 +25,23 @@ class FirstTableViewController: UITableViewController {
         let image2 = UIImage(named: "tshirt3.png")
         let imageData2:Data = UIImagePNGRepresentation(image2!)! as Data
         
-        stockItemsData = [itemData(opened: false, imageData: imageData, title: "T-Shirt 1", options: ["S", "M", "L"], stock: [1, 2, 3], sold: [0, 0, 0]),
-                         itemData(opened: false, imageData: imageData1, title: "T-Shirt 2", options: ["XS", "S", "M", "L", "XL"], stock: [1, 2, 3], sold: [0, 0, 0]),
-                         itemData(opened: false, imageData: imageData2, title: "T-Shirt 3", options: ["S", "M", "L", "XL", "XXL"], stock: [1, 2, 3], sold: [0, 0, 0]),
-                         itemData(opened: false, imageData: imageData, title: "T-Shirt 4", options: ["S", "M"], stock: [1, 2, 3], sold: [0, 0, 0]),
-                         itemData(opened: false, imageData: imageData1, title: "T-Shirt 5", options: ["S", "M", "L", "XL"], stock: [1, 2, 3], sold: [0, 0, 0]),
-                         itemData(opened: false, imageData: imageData2, title: "T-Shirt 6", options: ["XS", "S", "M", "L", "XL", "XXL"], stock: [1, 2, 3], sold: [0, 0, 0]),
-                         itemData(opened: false, imageData: imageData, title: "T-Shirt 7", options: ["S", "M", "L"], stock: [1, 2, 3], sold: [0, 0, 0])]
+		stockItemsData = [itemData(id: "unique1", opened: false, imageData: imageData, title: "T-Shirt 1", options: ["S", "M", "L"], stock: [1, 2, 3], sold: [0, 0, 0]),
+                         itemData(id: "unique2", opened: false, imageData: imageData1, title: "T-Shirt 2", options: ["XS", "S", "M", "L", "XL"], stock: [1, 2, 3], sold: [0, 0, 0]),
+                         itemData(id: "unique3", opened: false, imageData: imageData2, title: "T-Shirt 3", options: ["S", "M", "L", "XL", "XXL"], stock: [1, 2, 3], sold: [0, 0, 0]),
+                         itemData(id: "unique4", opened: false, imageData: imageData, title: "T-Shirt 4", options: ["S", "M"], stock: [1, 2, 3], sold: [0, 0, 0]),
+                         itemData(id: "unique5", opened: false, imageData: imageData1, title: "T-Shirt 5", options: ["S", "M", "L", "XL"], stock: [1, 2, 3], sold: [0, 0, 0]),
+                         itemData(id: "unique6", opened: false, imageData: imageData2, title: "T-Shirt 6", options: ["XS", "S", "M", "L", "XL", "XXL"], stock: [1, 2, 3], sold: [0, 0, 0]),
+                         itemData(id: "unique7", opened: false, imageData: imageData, title: "T-Shirt 7", options: ["S", "M", "L"], stock: [1, 2, 3], sold: [0, 0, 0])]
         
         UserDefaults.standard.set(try? PropertyListEncoder().encode(stockItemsData), forKey:"stockItemsData")
+	}
+	
+	override func viewWillAppear(_ animated: Bool) {
+		if let data = UserDefaults.standard.value(forKey:"stockItemsData") as? Data {
+			stockItemsData = try! PropertyListDecoder().decode(Array<itemData>.self, from: data)
+		}
+		
+		self.tableView.reloadData()
 	}
 
 	override func didReceiveMemoryWarning() {

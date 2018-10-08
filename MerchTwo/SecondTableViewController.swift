@@ -27,10 +27,16 @@ class SecondTableViewController: UITableViewController {
 	}
 	
 	func setupNavBar() {
-        let right1 = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(newSession(_:)))
-        let right2 = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editSession(_:)))
+		var right1 = UIBarButtonItem()
+		var right2 = UIBarButtonItem()
+		if self.tableView.isEditing {
+			right1 = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addItem(_:)))
+		} else {
+			right1 = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(newSession(_:)))
+			right2 = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(saveSession(_:)))
+		}
         self.navigationItem.rightBarButtonItems = [right1, right2]
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(saveSession(_:)))
+		self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: (self.tableView.isEditing ? "Done" : "Edit"), style: .plain, target: self, action: #selector(editSession(_:)))
 		self.navigationItem.title = "Sales: 0€"
 		
 		navigationController?.navigationBar.prefersLargeTitles = true
@@ -39,7 +45,11 @@ class SecondTableViewController: UITableViewController {
 		navigationItem.searchController = searchController
 	}
     
-    @objc func newSession(_ sender: Any) {
+	@objc func addItem(_ sender: Any) {
+		print("adding item to session...")
+	}
+	
+	@objc func newSession(_ sender: Any) {
         createAlert(title: "Would you like to start a new session?", message: "All current sales will be reset. The stock stays the same.", options: ["Yes", "No"], sender: sender)
     }
     
@@ -48,7 +58,8 @@ class SecondTableViewController: UITableViewController {
     }
     
     @objc func editSession(_ sender: Any) {
-        createAlert(title: "Would you like to save the current session?", message: "All current sales will be sent as mail.", options: ["Yes", "No"], sender: sender)
+		self.tableView.setEditing(!self.tableView.isEditing, animated: true)
+		setupNavBar()
     }
     
     func createAlert(title: String, message: String, options: [String], sender: Any) {
@@ -73,6 +84,33 @@ class SecondTableViewController: UITableViewController {
         })
     }
 	
+	override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+		let movedObject = self.stockItemsData[sourceIndexPath.row]
+		stockItemsData.remove(at: sourceIndexPath.row)
+		stockItemsData.insert(movedObject, at: destinationIndexPath.row)
+		UserDefaults.standard.set(try? PropertyListEncoder().encode(stockItemsData), forKey:"stockItemsData")
+	}
+	
+	override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
+	{
+		let deleteAction = UIContextualAction(style: .destructive, title: "Edit") { (action, view, handler) in
+			print("Add Action Tapped")
+		}
+		deleteAction.backgroundColor = .orange
+		let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+		return configuration
+	}
+	
+	override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
+	{
+		let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, handler) in
+			print("Delete Action Tapped")
+		}
+		deleteAction.backgroundColor = .red
+		let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+		return configuration
+	}
+	
 	override func numberOfSections(in tableView: UITableView) -> Int {
 		return stockItemsData.count
 	}
@@ -93,6 +131,7 @@ class SecondTableViewController: UITableViewController {
 			cell?.parentSecondTableViewController = self
             cell?.cellImage.image = UIImage(data: stockItemsData[indexPath.section].imageData)
 			cell?.cellTitle.text = stockItemsData[indexPath.section].title
+			cell?.editingAccessoryType = .disclosureIndicator
 			return cell!
 		} else {
 			let cell = tableView.dequeueReusableCell(withIdentifier: "SubCell") as? SecondTableViewSubCell
@@ -102,16 +141,21 @@ class SecondTableViewController: UITableViewController {
 	}
 	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0  {
-            if stockItemsData[indexPath.section].opened == true {
-                stockItemsData[indexPath.section].opened = false
-                let sections = IndexSet.init(integer: indexPath.section)
-                tableView.reloadSections(sections, with: .none)
-            } else {
-                stockItemsData[indexPath.section].opened = true
-                let sections = IndexSet.init(integer: indexPath.section)
-                tableView.reloadSections(sections, with: .none)
-            }
+		if indexPath.row == 0  {
+			if self.tableView.isEditing {
+				let item = stockItemsData[indexPath.row]
+				performSegue(withIdentifier: "showSessionItemDetailView", sender: item)
+			} else {
+				if stockItemsData[indexPath.section].opened == true {
+					stockItemsData[indexPath.section].opened = false
+					let sections = IndexSet.init(integer: indexPath.section)
+					tableView.reloadSections(sections, with: .none)
+				} else {
+					stockItemsData[indexPath.section].opened = true
+					let sections = IndexSet.init(integer: indexPath.section)
+					tableView.reloadSections(sections, with: .none)
+				}
+			}
         }
 	}
 	
@@ -122,4 +166,12 @@ class SecondTableViewController: UITableViewController {
             return 44
         }
     }
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if(segue.identifier == "showSessionItemDetailView") {
+			if let destination = segue.destination as? ItemDetailViewController {
+				destination.item = sender as! itemData
+			}
+		}
+	}
 }
