@@ -11,10 +11,19 @@ import UIKit
 class ItemDetailViewController: UIViewController {
 	
 	var item = ItemData()
+    var addItem = Bool();
+    @IBOutlet weak var itemImage: UIImageView!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		self.title = item.title
+        if addItem {
+            self.title = "new item"
+        } else {
+            self.title = item.title
+        }
+        
+        self.itemImage.layer.cornerRadius = self.itemImage.frame.size.width / 2
+        self.itemImage.clipsToBounds = true
 	}
 	
 	override func didReceiveMemoryWarning() {

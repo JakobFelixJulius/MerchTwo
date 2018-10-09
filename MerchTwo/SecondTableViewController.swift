@@ -8,13 +8,16 @@
 
 import UIKit
 
-class SecondTableViewController: UITableViewController {
+class SecondTableViewController: UITableViewController, UISearchResultsUpdating {
 	
 	var stockItemsData = [ItemData]()
+    var filteredItems = [ItemData]()
+    var searchController = UISearchController()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupNavBar()
+        setupSearchBar()
         
         if let data = UserDefaults.standard.value(forKey:"stockItemsData") as? Data {
             stockItemsData = try! PropertyListDecoder().decode(Array<ItemData>.self, from: data)
@@ -32,18 +35,53 @@ class SecondTableViewController: UITableViewController {
 		if self.tableView.isEditing {
 			right1 = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addItem(_:)))
 		} else {
-			right1 = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(newSession(_:)))
-			right2 = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(saveSession(_:)))
+			right1 = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(saveSession(_:)))
+			right2 = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(newSession(_:)))
 		}
         self.navigationItem.rightBarButtonItems = [right1, right2]
 		self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: (self.tableView.isEditing ? "Done" : "Edit"), style: .plain, target: self, action: #selector(editSession(_:)))
-		self.navigationItem.title = "Sales: 0€"
+		self.navigationItem.title = "Berlin: 0€"
 		
 		navigationController?.navigationBar.prefersLargeTitles = true
-		
-		let searchController = UISearchController(searchResultsController: nil)
-		navigationItem.searchController = searchController
+        
+//        let textField = UITextField(frame: CGRect(x: 0, y: 0, width: 200, height: 22))
+//        textField.text = "Title"
+//        textField.font = UIFont.systemFont(ofSize: 19)
+//        textField.textColor = UIColor.black
+//        textField.textAlignment = .center
+//        self.navigationItem.titleView = textField
 	}
+    
+    func setupSearchBar() {
+        searchController = UISearchController(searchResultsController: nil)
+        navigationItem.searchController = searchController
+        
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Session"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+    
+    func searchBarIsEmpty() -> Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
+        filteredItems = stockItemsData.filter({( item : ItemData) -> Bool in
+            return item.title.lowercased().contains(searchText.lowercased())
+        })
+        
+        tableView.reloadData()
+    }
+    
+    func isFiltering() -> Bool {
+        return searchController.isActive && !searchBarIsEmpty()
+    }
     
 	@objc func addItem(_ sender: Any) {
 		print("adding item to session...")
@@ -112,7 +150,7 @@ class SecondTableViewController: UITableViewController {
 	}
 	
 	override func numberOfSections(in tableView: UITableView) -> Int {
-		return stockItemsData.count
+		return isFiltering() ? filteredItems.count : stockItemsData.count
 	}
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -128,9 +166,10 @@ class SecondTableViewController: UITableViewController {
         let dataIndex = indexPath.row - 1
 		if indexPath.row == 0 {
 			let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? SecondTableViewCell
+            let item = isFiltering() ? filteredItems[indexPath.section] : stockItemsData[indexPath.section]
 			cell?.parentSecondTableViewController = self
-            cell?.cellImage.image = UIImage(data: stockItemsData[indexPath.section].imageData)
-			cell?.cellTitle.text = stockItemsData[indexPath.section].title
+            cell?.cellImage.image = UIImage(data: item.imageData)
+			cell?.cellTitle.text = item.title
 			cell?.editingAccessoryType = .disclosureIndicator
 			return cell!
 		} else {
@@ -143,7 +182,7 @@ class SecondTableViewController: UITableViewController {
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		if indexPath.row == 0  {
 			if self.tableView.isEditing {
-				let item = stockItemsData[indexPath.row]
+				let item = stockItemsData[indexPath.section]
 				performSegue(withIdentifier: "showSessionItemDetailView", sender: item)
 			} else {
 				if stockItemsData[indexPath.section].opened == true {
