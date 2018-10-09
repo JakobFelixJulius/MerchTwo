@@ -10,7 +10,7 @@ import UIKit
 
 class ItemDetailViewController: UIViewController {
 	
-	var item = itemData()
+	var item = ItemData()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -25,7 +25,7 @@ class ItemDetailViewController: UIViewController {
 	func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == "showSessionItemDetailView"{
 			let vc = segue.destination as! ItemDetailViewController
-			vc.item = sender as! itemData
+			vc.item = sender as! ItemData
 		}
 	}
 }

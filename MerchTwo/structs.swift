@@ -9,7 +9,7 @@
 import Foundation
 
 //--------------------------------------------------------------
-struct itemData: Codable {
+struct ItemData: Codable {
 	var id = String()
     var opened = Bool()
     var imageData = Data()
@@ -20,18 +20,31 @@ struct itemData: Codable {
 }
 
 //--------------------------------------------------------------
-struct appData: Codable {
+struct AppData: Codable {
     var currentUser = String()
     var loggedIn = Bool()
-	var stock = stockData()
-	var sessions = [sessionData]()
+	var stock = StockData()
+	var sessions = [SessionData]()
+	
+	mutating func addSession(session: SessionData) {
+		self.sessions.append(session)
+	}
+	
+	mutating func deleteSession(id: String) {
+		for i in 0..<self.sessions.count {
+			if self.sessions[i].id == id {
+				self.sessions.remove(at: i)
+				break
+			}
+		}
+	}
 }
 
 //--------------------------------------------------------------
-struct stockData: Codable {
-    var stockItems = [itemData]()
+struct StockData: Codable {
+    var stockItems = [ItemData]()
 	
-	mutating func addStockItem(item: itemData) {
+	mutating func addStockItem(item: ItemData) {
 		self.stockItems.append(item)
 	}
 	
@@ -46,8 +59,9 @@ struct stockData: Codable {
 }
 
 //--------------------------------------------------------------
-struct sessionData: Codable {
-    var sessionItems = [itemData]()
+struct SessionData: Codable {
+	var id = String()
+    var sessionItems = [ItemData]()
     var revenue = Float()
 	
 	mutating func setRevenue(value: Float) {
@@ -58,7 +72,7 @@ struct sessionData: Codable {
 		return self.revenue
 	}
 	
-	mutating func addSessionItem(item: itemData) {
+	mutating func addSessionItem(item: ItemData) {
 		self.sessionItems.append(item)
 	}
 	

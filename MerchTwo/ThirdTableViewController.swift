@@ -10,13 +10,13 @@ import UIKit
 
 class ThirdTableViewController: UITableViewController {
     
-    var stockItemsData = [itemData]()
+    var stockItemsData = [ItemData]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
         if let data = UserDefaults.standard.value(forKey:"stockItemsData") as? Data {
-            stockItemsData = try! PropertyListDecoder().decode(Array<itemData>.self, from: data)
+            stockItemsData = try! PropertyListDecoder().decode(Array<ItemData>.self, from: data)
         }
     }
     
@@ -132,7 +132,7 @@ class ThirdTableViewController: UITableViewController {
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if(segue.identifier == "showStockItemDetailView") {
 			if let destination = segue.destination as? ItemDetailViewController {
-				destination.item = sender as! itemData
+				destination.item = sender as! ItemData
 			}
 		}
 	}

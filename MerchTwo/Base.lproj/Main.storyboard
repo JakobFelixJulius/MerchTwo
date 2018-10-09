@@ -88,7 +88,7 @@
         <scene sceneID="g2s-sc-0y7">
             <objects>
                 <navigationController id="syy-MB-VRu" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Sell" image="first" id="Ky2-zm-omx"/>
+                    <tabBarItem key="tabBarItem" title="Sell" image="money_bag" id="Ky2-zm-omx"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Hbt-mu-YHN">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -217,7 +217,7 @@
         <scene sceneID="Hkw-m3-Iv3">
             <objects>
                 <navigationController id="BfL-eS-Nit" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Session" image="second" id="l8T-Tj-V8l"/>
+                    <tabBarItem key="tabBarItem" title="Session" image="shopping_cart" id="l8T-Tj-V8l"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6gd-xA-nK4">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -243,11 +243,13 @@
                         <segue destination="syy-MB-VRu" kind="relationship" relationship="viewControllers" id="0a5-fF-VVo"/>
                         <segue destination="BfL-eS-Nit" kind="relationship" relationship="viewControllers" id="BEH-xd-K0F"/>
                         <segue destination="U1y-tE-dOz" kind="relationship" relationship="viewControllers" id="0vK-5d-hao"/>
+                        <segue destination="fj4-U7-kun" kind="relationship" relationship="viewControllers" id="ZGX-W0-5rm"/>
+                        <segue destination="4Nl-W5-UGG" kind="relationship" relationship="viewControllers" id="J8J-AU-9Wx"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0.0" y="0.0"/>
+            <point key="canvasLocation" x="-2" y="-344"/>
         </scene>
         <!--MerchTwo-->
         <scene sceneID="rlb-oY-hTP">
@@ -338,7 +340,7 @@
         <scene sceneID="zVb-kc-Cla">
             <objects>
                 <navigationController id="U1y-tE-dOz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Stock" image="second" id="cwh-3k-tyY"/>
+                    <tabBarItem key="tabBarItem" title="Stock" image="shop" id="cwh-3k-tyY"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6M9-Qf-5go">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -351,10 +353,70 @@
             </objects>
             <point key="canvasLocation" x="969" y="737"/>
         </scene>
+        <!--Settings-->
+        <scene sceneID="2iL-dt-WTv">
+            <objects>
+                <tableViewController id="4Nl-W5-UGG" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="KyU-XB-zk0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="zUu-CI-5YH">
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zUu-CI-5YH" id="aa3-5G-kKy">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="4Nl-W5-UGG" id="5IT-xe-2aF"/>
+                            <outlet property="delegate" destination="4Nl-W5-UGG" id="VMm-ph-Vhg"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Settings" image="settings" id="1gH-ne-7Ee"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JzA-cw-naH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-982" y="752"/>
+        </scene>
+        <!--Analytics-->
+        <scene sceneID="aAY-65-psJ">
+            <objects>
+                <viewController id="fj4-U7-kun" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bSW-QM-Nrv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Analytics will be here..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TGC-TL-q1n">
+                                <rect key="frame" x="100" y="323" width="175" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="TGC-TL-q1n" firstAttribute="centerY" secondItem="bSW-QM-Nrv" secondAttribute="centerY" id="JLs-IP-XgM"/>
+                            <constraint firstItem="TGC-TL-q1n" firstAttribute="centerX" secondItem="bSW-QM-Nrv" secondAttribute="centerX" id="jxh-bA-oZ8"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ZJ5-C7-ZxN"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Analytics" image="combo_chart" id="RuB-Cg-bp8"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uUF-El-Jpo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1" y="753"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="combo_chart" width="30" height="30"/>
+        <image name="money_bag" width="30" height="30"/>
+        <image name="settings" width="30" height="30"/>
+        <image name="shop" width="30" height="30"/>
+        <image name="shopping_cart" width="30" height="30"/>
         <image name="tshirt3" width="1210" height="1210"/>
     </resources>
     <inferredMetricsTieBreakers>
