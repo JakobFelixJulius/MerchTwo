@@ -60,6 +60,16 @@ struct StockData: Codable {
 			}
 		}
 	}
+	
+	func findStockItemIndex(item: ItemData) -> Int {
+		var value = -1
+		for i in 0..<globalAppData.stock.stockItems.count {
+			if self.stockItems[i].id == item.id {
+				value = i
+			}
+		}
+		return value
+	}
 }
 
 //--------------------------------------------------------------
@@ -110,7 +120,7 @@ func initAppData() -> AppData{
 						  ItemData(id: "unique7", opened: false, imageData: imageData, title: "Lighter", options: ["S", "M", "L"], price: 3.5, stock: [1, 2, 3], sold: [0, 2, 0])]
 	
 	let stockData = StockData(stockItems: stockItemsData)
-		
+	
 	return AppData(currentUser: "",
 								loggedIn: false,
 								currency: "€",
@@ -119,6 +129,7 @@ func initAppData() -> AppData{
 								stock: stockData)
 }
 
+//--------------------------------------------------------------
 var globalAppData = initAppData()
 
 

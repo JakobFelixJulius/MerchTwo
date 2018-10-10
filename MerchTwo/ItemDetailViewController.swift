@@ -37,12 +37,7 @@ class ItemDetailViewController: UIViewController, UINavigationControllerDelegate
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
-		for i in 0..<globalAppData.stock.stockItems.count {
-			if globalAppData.stock.stockItems[i].id == item.id {
-				globalAppData.stock.stockItems[i] = item
-				break
-			}
-		}
+		globalAppData.stock.stockItems[globalAppData.stock.findStockItemIndex(item: item)] = item
 	}
 	
 	@objc func imageTapped(_ sender: Any) {
@@ -53,18 +48,16 @@ class ItemDetailViewController: UIViewController, UINavigationControllerDelegate
 		let alert = UIAlertController(title: "Would you like to import or take a picture?", message: "You can import images from your Camera Roll or take a picture.", preferredStyle: .actionSheet)
 		
 		let imagePickerController = UIImagePickerController()
+		imagePickerController.delegate = self
+		imagePickerController.allowsEditing = false
 		
 		alert.addAction(UIAlertAction(title: "Camera Roll", style: .default , handler:{ (UIAlertAction)in
 			imagePickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary
-			imagePickerController.delegate = self
-			imagePickerController.allowsEditing = false
 			self.present(imagePickerController, animated: true, completion: nil)
 		}))
 		
 		alert.addAction(UIAlertAction(title: "Take a Picture", style: .default , handler:{ (UIAlertAction)in
 			imagePickerController.sourceType = UIImagePickerControllerSourceType.camera
-			imagePickerController.delegate = self
-			imagePickerController.allowsEditing = false
 			self.present(imagePickerController, animated: true, completion: nil)
 		}))
 		
@@ -76,9 +69,7 @@ class ItemDetailViewController: UIViewController, UINavigationControllerDelegate
 			popoverController.barButtonItem = sender as? UIBarButtonItem
 		}
 		
-		self.present(alert, animated: true, completion: {
-			print("completion block")
-		})
+		self.present(alert, animated: true, completion: nil)
 	}
 	
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {

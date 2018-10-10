@@ -83,7 +83,8 @@ class SessionTableViewController: UITableViewController, UISearchResultsUpdating
     }
     
 	@objc func addItem(_ sender: Any) {
-		print("adding item to session...")
+		performSegue(withIdentifier: "showSelectSessionItems", sender: sender)
+		print("showSelectSessionItems")
 	}
 	
 	@objc func newSession(_ sender: Any) {

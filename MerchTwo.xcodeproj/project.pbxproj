@@ -17,6 +17,8 @@
 		B26A1868216637DB00D15941 /* SessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26A1867216637DB00D15941 /* SessionTableViewCell.swift */; };
 		B26A186A216637E700D15941 /* StockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26A1869216637E700D15941 /* StockTableViewCell.swift */; };
 		B26A186C216649CA00D15941 /* SessionTableViewSubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26A186B216649CA00D15941 /* SessionTableViewSubCell.swift */; };
+		B295FE81216E251E00F156AA /* SelectSessionItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B295FE80216E251E00F156AA /* SelectSessionItemsViewController.swift */; };
+		B295FE83216E2D8200F156AA /* SelectSessionItemsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B295FE82216E2D8200F156AA /* SelectSessionItemsCell.swift */; };
 		B2A4EBDD216B632F00F1BF6E /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A4EBDC216B632F00F1BF6E /* ItemDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +35,8 @@
 		B26A1867216637DB00D15941 /* SessionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
 		B26A1869216637E700D15941 /* StockTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockTableViewCell.swift; sourceTree = "<group>"; };
 		B26A186B216649CA00D15941 /* SessionTableViewSubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTableViewSubCell.swift; sourceTree = "<group>"; };
+		B295FE80216E251E00F156AA /* SelectSessionItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSessionItemsViewController.swift; sourceTree = "<group>"; };
+		B295FE82216E2D8200F156AA /* SelectSessionItemsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSessionItemsCell.swift; sourceTree = "<group>"; };
 		B2A4EBDC216B632F00F1BF6E /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,6 +71,8 @@
 			isa = PBXGroup;
 			children = (
 				B235D1112165F3C900EDF439 /* AppDelegate.swift */,
+				B295FE80216E251E00F156AA /* SelectSessionItemsViewController.swift */,
+				B295FE82216E2D8200F156AA /* SelectSessionItemsCell.swift */,
 				B235D1152165F3C900EDF439 /* SessionTableViewController.swift */,
 				B26A1867216637DB00D15941 /* SessionTableViewCell.swift */,
 				B26A186B216649CA00D15941 /* SessionTableViewSubCell.swift */,
@@ -156,9 +162,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2A4EBDD216B632F00F1BF6E /* ItemDetailViewController.swift in Sources */,
+				B295FE83216E2D8200F156AA /* SelectSessionItemsCell.swift in Sources */,
 				B26A186C216649CA00D15941 /* SessionTableViewSubCell.swift in Sources */,
 				B235D1162165F3C900EDF439 /* SessionTableViewController.swift in Sources */,
 				8D9167A721695A7C00195D04 /* structs.swift in Sources */,
+				B295FE81216E251E00F156AA /* SelectSessionItemsViewController.swift in Sources */,
 				B235D1122165F3C900EDF439 /* AppDelegate.swift in Sources */,
 				B26A18642165FB1E00D15941 /* StockTableViewController.swift in Sources */,
 				B26A1868216637DB00D15941 /* SessionTableViewCell.swift in Sources */,
