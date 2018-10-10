@@ -9,8 +9,7 @@
 import UIKit
 
 class StockTableViewController: UITableViewController, UISearchResultsUpdating {
-    
-    var stockItemsData = [ItemData]()
+
     var filteredItems = [ItemData]()
     var searchController = UISearchController()
     
@@ -18,16 +17,16 @@ class StockTableViewController: UITableViewController, UISearchResultsUpdating {
         super.viewDidLoad()
         setupNavBar()
         setupSearchBar()
-        
-        if let data = UserDefaults.standard.value(forKey:"stockItemsData") as? Data {
-            stockItemsData = try! PropertyListDecoder().decode(Array<ItemData>.self, from: data)
-        }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+	
+	override func viewWillAppear(_ animated: Bool) {
+		self.tableView.reloadData()
+	}
     
     func setupNavBar() {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: (self.tableView.isEditing ? "Done" : "Edit"), style: .plain, target: self, action: #selector(editSession(_:)))
@@ -61,7 +60,7 @@ class StockTableViewController: UITableViewController, UISearchResultsUpdating {
     }
     
     func filterContentForSearchText(_ searchText: String, scope: String = "All") {
-        filteredItems = stockItemsData.filter({( item : ItemData) -> Bool in
+        filteredItems = globalAppData.stock.stockItems.filter({( item : ItemData) -> Bool in
             return item.title.lowercased().contains(searchText.lowercased())
         })
         
@@ -108,10 +107,9 @@ class StockTableViewController: UITableViewController, UISearchResultsUpdating {
     }
 	
 	override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-		let movedObject = self.stockItemsData[sourceIndexPath.row]
-		stockItemsData.remove(at: sourceIndexPath.row)
-		stockItemsData.insert(movedObject, at: destinationIndexPath.row)
-		UserDefaults.standard.set(try? PropertyListEncoder().encode(stockItemsData), forKey:"stockItemsData")
+		let movedObject = globalAppData.stock.stockItems[sourceIndexPath.row]
+		globalAppData.stock.stockItems.remove(at: sourceIndexPath.row)
+		globalAppData.stock.stockItems.insert(movedObject, at: destinationIndexPath.row)
 	}
 	
 	override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
@@ -136,13 +134,13 @@ class StockTableViewController: UITableViewController, UISearchResultsUpdating {
 	}
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return isFiltering() ? filteredItems.count : stockItemsData.count
+        return isFiltering() ? filteredItems.count : globalAppData.stock.stockItems.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if stockItemsData[section].opened {
-            return stockItemsData[section].options.count + 1
+        if globalAppData.stock.stockItems[section].opened {
+            return globalAppData.stock.stockItems[section].options.count + 1
         } else {
             return 1
         }
@@ -152,7 +150,7 @@ class StockTableViewController: UITableViewController, UISearchResultsUpdating {
         let dataIndex = indexPath.row - 1
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? SessionTableViewCell
-            let item = isFiltering() ? filteredItems[indexPath.section] : stockItemsData[indexPath.section]
+            let item = isFiltering() ? filteredItems[indexPath.section] : globalAppData.stock.stockItems[indexPath.section]
             cell?.parentStockTableViewController = self
             cell?.cellImage.image = UIImage(data: item.imageData)
             cell?.cellTitle.text = item.title
@@ -160,23 +158,23 @@ class StockTableViewController: UITableViewController, UISearchResultsUpdating {
             return cell!
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SubCell") as? SessionTableViewSubCell
-            cell?.textLabel?.text = stockItemsData[indexPath.section].options[dataIndex]
+            cell?.textLabel?.text = globalAppData.stock.stockItems[indexPath.section].options[dataIndex]
             return cell!
         }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		if self.tableView.isEditing {
-			let item = stockItemsData[indexPath.section]
+			let item = globalAppData.stock.stockItems[indexPath.section]
 			performSegue(withIdentifier: "showStockItemDetailView", sender: item)
 		} else {
 			if indexPath.row == 0  {
-				if stockItemsData[indexPath.section].opened == true {
-					stockItemsData[indexPath.section].opened = false
+				if globalAppData.stock.stockItems[indexPath.section].opened == true {
+					globalAppData.stock.stockItems[indexPath.section].opened = false
 					let sections = IndexSet.init(integer: indexPath.section)
 					tableView.reloadSections(sections, with: .none)
 				} else {
-					stockItemsData[indexPath.section].opened = true
+					globalAppData.stock.stockItems[indexPath.section].opened = true
 					let sections = IndexSet.init(integer: indexPath.section)
 					tableView.reloadSections(sections, with: .none)
 				}

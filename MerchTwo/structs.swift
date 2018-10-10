@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 //--------------------------------------------------------------
 struct ItemData: Codable {
@@ -25,8 +26,9 @@ struct AppData: Codable {
     var currentUser = String()
     var loggedIn = Bool()
 	var currency = String()
-	var stock = StockData()
+	var activeSession = Int()
 	var sessions = [SessionData]()
+	var stock = StockData()
 	
 	mutating func addSession(session: SessionData) {
 		self.sessions.append(session)
@@ -87,3 +89,38 @@ struct SessionData: Codable {
 		}
 	}
 }
+
+//--------------------------------------------------------------
+func initAppData() -> AppData{
+	let image = UIImage(named: "tshirt1.png")
+	let imageData:Data = UIImagePNGRepresentation(image!)! as Data
+	
+	let image1 = UIImage(named: "tshirt2.png")
+	let imageData1:Data = UIImagePNGRepresentation(image1!)! as Data
+	
+	let image2 = UIImage(named: "tshirt3.png")
+	let imageData2:Data = UIImagePNGRepresentation(image2!)! as Data
+	
+	let stockItemsData = [ItemData(id: "unique1", opened: false, imageData: imageData, title: "Tour T-Shirt", options: ["S", "M", "L"], price: 15.0, stock: [1, 2, 3], sold: [33, 0, 2]),
+						  ItemData(id: "unique2", opened: false, imageData: imageData1, title: "Black T-Shirt", options: ["XS", "S", "M", "L", "XL"], price: 18.0, stock: [1, 2, 3], sold: [100, 30, 3]),
+						  ItemData(id: "unique3", opened: false, imageData: imageData2, title: "Hoodie White", options: ["S", "M", "L", "XL", "XXL"], price: 30.0, stock: [1, 2, 3], sold: [2, 0, 6]),
+						  ItemData(id: "unique4", opened: false, imageData: imageData, title: "Gymbag", options: ["S", "M"], price: 12.5, stock: [1, 2, 3], sold: [0, 0, 18]),
+						  ItemData(id: "unique5", opened: false, imageData: imageData1, title: "Poster 2. Album", options: ["S", "M", "L", "XL"], price: 5.0, stock: [1, 2, 3], sold: [1000, 98, 500]),
+						  ItemData(id: "unique6", opened: false, imageData: imageData2, title: "Songbook Session Edition 1. Album", options: ["XS", "S", "M", "L", "XL", "XXL"], price: 20.0, stock: [1, 2, 3], sold: [9000, 900, 99]),
+						  ItemData(id: "unique7", opened: false, imageData: imageData, title: "Lighter", options: ["S", "M", "L"], price: 3.5, stock: [1, 2, 3], sold: [0, 2, 0])]
+	
+	let stockData = StockData(stockItems: stockItemsData)
+		
+	return AppData(currentUser: "",
+								loggedIn: false,
+								currency: "€",
+								activeSession: -1,
+								sessions: [],
+								stock: stockData)
+}
+
+var globalAppData = initAppData()
+
+
+
+
