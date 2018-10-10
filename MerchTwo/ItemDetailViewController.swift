@@ -16,6 +16,7 @@ class ItemDetailViewController: UIViewController, UINavigationControllerDelegate
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+        
         if addItem {
             self.title = "new item"
         } else {
@@ -50,6 +51,12 @@ class ItemDetailViewController: UIViewController, UINavigationControllerDelegate
 		let imagePickerController = UIImagePickerController()
 		imagePickerController.delegate = self
 		imagePickerController.allowsEditing = false
+        
+        if let popoverController = alert.popoverPresentationController {
+            popoverController.sourceView = self.view
+            popoverController.sourceRect = CGRect(x: (self.view.bounds.midX), y: (self.view.bounds.midY), width: 0, height: 0)
+            popoverController.permittedArrowDirections = []
+        }
 		
 		alert.addAction(UIAlertAction(title: "Camera Roll", style: .default , handler:{ (UIAlertAction)in
             imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
@@ -64,10 +71,6 @@ class ItemDetailViewController: UIViewController, UINavigationControllerDelegate
 		alert.addAction(UIAlertAction(title: "Abbruch", style: .cancel, handler:{ (UIAlertAction)in
 			print("User click Dismiss button")
 		}))
-		
-		if let popoverController = alert.popoverPresentationController {
-			popoverController.barButtonItem = sender as? UIBarButtonItem
-		}
 		
 		self.present(alert, animated: true, completion: nil)
 	}
