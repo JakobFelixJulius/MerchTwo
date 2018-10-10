@@ -14,14 +14,14 @@
         <!--MerchTwo-->
         <scene sceneID="0Bu-1u-z11">
             <objects>
-                <tableViewController id="A30-4Q-E1w" customClass="SecondTableViewController" customModule="MerchTwo" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="A30-4Q-E1w" customClass="SessionTableViewController" customModule="MerchTwo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="pyB-Zb-lLQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <inset key="separatorInset" minX="90" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="85" id="Vs6-cq-28j" customClass="SecondTableViewCell" customModule="MerchTwo" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="85" id="Vs6-cq-28j" customClass="SessionTableViewCell" customModule="MerchTwo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="85"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vs6-cq-28j" id="yX7-wU-MbM">
@@ -35,48 +35,55 @@
                                                 <constraint firstAttribute="width" constant="65" id="FN9-MH-24b"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFE-Fz-9fq">
-                                            <rect key="frame" x="91" y="21" width="166" height="21"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20€ - 9999 sold" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKy-oi-sOb">
-                                            <rect key="frame" x="91" y="46" width="166" height="18"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumValue="-1" maximumValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="gjq-KZ-Ncc">
-                                            <rect key="frame" x="265" y="28" width="94" height="29"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="94" id="BtL-vt-yJG"/>
-                                            </constraints>
-                                            <connections>
-                                                <action selector="sell:" destination="Vs6-cq-28j" eventType="valueChanged" id="Vah-Fm-PGu"/>
-                                            </connections>
-                                        </stepper>
+                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Wmg-qd-JGF">
+                                            <rect key="frame" x="91" y="11" width="268" height="63"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="osP-cD-kHW">
+                                                    <rect key="frame" x="0.0" y="12.5" width="174" height="38.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFE-Fz-9fq">
+                                                            <rect key="frame" x="0.0" y="0.0" width="174" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20€ - 9999 sold" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKy-oi-sOb">
+                                                            <rect key="frame" x="0.0" y="20.5" width="174" height="18"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumValue="-1" maximumValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="gjq-KZ-Ncc">
+                                                    <rect key="frame" x="174" y="17" width="94" height="29"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="94" id="BtL-vt-yJG"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <action selector="sell:" destination="Vs6-cq-28j" eventType="valueChanged" id="Vah-Fm-PGu"/>
+                                                    </connections>
+                                                </stepper>
+                                            </subviews>
+                                        </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="BKy-oi-sOb" firstAttribute="top" secondItem="XFE-Fz-9fq" secondAttribute="bottom" constant="4" id="6n3-oF-FA9"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Wmg-qd-JGF" secondAttribute="bottom" id="D2u-Qu-l2I"/>
                                         <constraint firstItem="hvx-HG-IJ0" firstAttribute="leading" secondItem="yX7-wU-MbM" secondAttribute="leadingMargin" id="DD6-iH-fru"/>
-                                        <constraint firstItem="gjq-KZ-Ncc" firstAttribute="leading" secondItem="XFE-Fz-9fq" secondAttribute="trailing" constant="8" id="MJx-tv-GXN"/>
-                                        <constraint firstItem="XFE-Fz-9fq" firstAttribute="top" secondItem="yX7-wU-MbM" secondAttribute="topMargin" constant="10" id="OSl-Sk-X0v"/>
-                                        <constraint firstItem="BKy-oi-sOb" firstAttribute="leading" secondItem="hvx-HG-IJ0" secondAttribute="trailing" constant="10" id="XCG-2u-YDg"/>
-                                        <constraint firstItem="gjq-KZ-Ncc" firstAttribute="centerY" secondItem="yX7-wU-MbM" secondAttribute="centerY" id="cJL-Qo-pEW"/>
-                                        <constraint firstItem="XFE-Fz-9fq" firstAttribute="leading" secondItem="hvx-HG-IJ0" secondAttribute="trailing" constant="10" id="kUc-4e-YLa"/>
-                                        <constraint firstItem="gjq-KZ-Ncc" firstAttribute="leading" secondItem="BKy-oi-sOb" secondAttribute="trailing" constant="8" id="mAp-qT-BvY"/>
+                                        <constraint firstItem="Wmg-qd-JGF" firstAttribute="top" secondItem="yX7-wU-MbM" secondAttribute="topMargin" id="JxJ-L4-OZZ"/>
+                                        <constraint firstItem="Wmg-qd-JGF" firstAttribute="leading" secondItem="hvx-HG-IJ0" secondAttribute="trailing" constant="10" id="mGr-sS-Wrt"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Wmg-qd-JGF" secondAttribute="trailing" id="qXd-vF-lHe"/>
                                         <constraint firstItem="hvx-HG-IJ0" firstAttribute="centerY" secondItem="yX7-wU-MbM" secondAttribute="centerY" id="vyG-iN-skY"/>
-                                        <constraint firstItem="gjq-KZ-Ncc" firstAttribute="trailing" secondItem="yX7-wU-MbM" secondAttribute="trailingMargin" id="xhO-4t-4aF"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="cellImage" destination="hvx-HG-IJ0" id="bYs-Rr-60t"/>
                                     <outlet property="cellSubtitle" destination="BKy-oi-sOb" id="lad-PI-iTj"/>
                                     <outlet property="cellTitle" destination="XFE-Fz-9fq" id="Kl7-wD-tdZ"/>
+                                    <outlet property="sellButton" destination="gjq-KZ-Ncc" id="eJ8-hR-cZk"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SubCell" textLabel="QE4-IB-sdA" rowHeight="44" style="IBUITableViewCellStyleDefault" id="DYv-9k-QSA" customClass="SecondTableViewSubCell" customModule="MerchTwo" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SubCell" textLabel="QE4-IB-sdA" rowHeight="44" style="IBUITableViewCellStyleDefault" id="DYv-9k-QSA" customClass="SessionTableViewSubCell" customModule="MerchTwo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="113" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DYv-9k-QSA" id="ia4-1c-DXS">
@@ -106,7 +113,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KNw-cD-zNh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1758" y="-700"/>
+            <point key="canvasLocation" x="1757.5999999999999" y="-700.29985007496259"/>
         </scene>
         <!--Item Detail View Controller-->
         <scene sceneID="thf-Ds-a0j">
@@ -187,14 +194,14 @@
         <!--MerchTwo-->
         <scene sceneID="rlb-oY-hTP">
             <objects>
-                <tableViewController id="Rsr-dt-slJ" customClass="ThirdTableViewController" customModule="MerchTwo" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Rsr-dt-slJ" customClass="StockTableViewController" customModule="MerchTwo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="N5Q-Mp-46a">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <inset key="separatorInset" minX="90" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="85" id="JzC-Nk-Qtp" customClass="SecondTableViewCell" customModule="MerchTwo" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="85" id="JzC-Nk-Qtp" customClass="SessionTableViewCell" customModule="MerchTwo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="85"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JzC-Nk-Qtp" id="K3p-FT-D0H">
@@ -238,7 +245,7 @@
                                     <outlet property="cellTitle" destination="Jfi-x2-bsb" id="ZoO-b3-X7g"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SubCell" textLabel="DCs-4j-aaz" rowHeight="44" style="IBUITableViewCellStyleDefault" id="90P-gX-yye" customClass="SecondTableViewSubCell" customModule="MerchTwo" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SubCell" textLabel="DCs-4j-aaz" rowHeight="44" style="IBUITableViewCellStyleDefault" id="90P-gX-yye" customClass="SessionTableViewSubCell" customModule="MerchTwo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="113" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="90P-gX-yye" id="IgM-Jh-8I5">

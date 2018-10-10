@@ -9,14 +9,14 @@
 /* Begin PBXBuildFile section */
 		8D9167A721695A7C00195D04 /* structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9167A621695A7C00195D04 /* structs.swift */; };
 		B235D1122165F3C900EDF439 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B235D1112165F3C900EDF439 /* AppDelegate.swift */; };
-		B235D1162165F3C900EDF439 /* SecondTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B235D1152165F3C900EDF439 /* SecondTableViewController.swift */; };
+		B235D1162165F3C900EDF439 /* SessionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B235D1152165F3C900EDF439 /* SessionTableViewController.swift */; };
 		B235D1192165F3C900EDF439 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B235D1172165F3C900EDF439 /* Main.storyboard */; };
 		B235D11B2165F3C900EDF439 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B235D11A2165F3C900EDF439 /* Assets.xcassets */; };
 		B235D11E2165F3C900EDF439 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B235D11C2165F3C900EDF439 /* LaunchScreen.storyboard */; };
-		B26A18642165FB1E00D15941 /* ThirdTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26A18632165FB1E00D15941 /* ThirdTableViewController.swift */; };
-		B26A1868216637DB00D15941 /* SecondTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26A1867216637DB00D15941 /* SecondTableViewCell.swift */; };
-		B26A186A216637E700D15941 /* ThirdTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26A1869216637E700D15941 /* ThirdTableViewCell.swift */; };
-		B26A186C216649CA00D15941 /* SecondTableViewSubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26A186B216649CA00D15941 /* SecondTableViewSubCell.swift */; };
+		B26A18642165FB1E00D15941 /* StockTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26A18632165FB1E00D15941 /* StockTableViewController.swift */; };
+		B26A1868216637DB00D15941 /* SessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26A1867216637DB00D15941 /* SessionTableViewCell.swift */; };
+		B26A186A216637E700D15941 /* StockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26A1869216637E700D15941 /* StockTableViewCell.swift */; };
+		B26A186C216649CA00D15941 /* SessionTableViewSubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26A186B216649CA00D15941 /* SessionTableViewSubCell.swift */; };
 		B2A4EBDD216B632F00F1BF6E /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A4EBDC216B632F00F1BF6E /* ItemDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -24,15 +24,15 @@
 		8D9167A621695A7C00195D04 /* structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = structs.swift; sourceTree = "<group>"; };
 		B235D10E2165F3C900EDF439 /* MerchTwo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MerchTwo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B235D1112165F3C900EDF439 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B235D1152165F3C900EDF439 /* SecondTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondTableViewController.swift; sourceTree = "<group>"; };
+		B235D1152165F3C900EDF439 /* SessionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTableViewController.swift; sourceTree = "<group>"; };
 		B235D1182165F3C900EDF439 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B235D11A2165F3C900EDF439 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B235D11D2165F3C900EDF439 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B235D11F2165F3C900EDF439 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B26A18632165FB1E00D15941 /* ThirdTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTableViewController.swift; sourceTree = "<group>"; };
-		B26A1867216637DB00D15941 /* SecondTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondTableViewCell.swift; sourceTree = "<group>"; };
-		B26A1869216637E700D15941 /* ThirdTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTableViewCell.swift; sourceTree = "<group>"; };
-		B26A186B216649CA00D15941 /* SecondTableViewSubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondTableViewSubCell.swift; sourceTree = "<group>"; };
+		B26A18632165FB1E00D15941 /* StockTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockTableViewController.swift; sourceTree = "<group>"; };
+		B26A1867216637DB00D15941 /* SessionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
+		B26A1869216637E700D15941 /* StockTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockTableViewCell.swift; sourceTree = "<group>"; };
+		B26A186B216649CA00D15941 /* SessionTableViewSubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTableViewSubCell.swift; sourceTree = "<group>"; };
 		B2A4EBDC216B632F00F1BF6E /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,11 +67,11 @@
 			isa = PBXGroup;
 			children = (
 				B235D1112165F3C900EDF439 /* AppDelegate.swift */,
-				B235D1152165F3C900EDF439 /* SecondTableViewController.swift */,
-				B26A1867216637DB00D15941 /* SecondTableViewCell.swift */,
-				B26A186B216649CA00D15941 /* SecondTableViewSubCell.swift */,
-				B26A18632165FB1E00D15941 /* ThirdTableViewController.swift */,
-				B26A1869216637E700D15941 /* ThirdTableViewCell.swift */,
+				B235D1152165F3C900EDF439 /* SessionTableViewController.swift */,
+				B26A1867216637DB00D15941 /* SessionTableViewCell.swift */,
+				B26A186B216649CA00D15941 /* SessionTableViewSubCell.swift */,
+				B26A18632165FB1E00D15941 /* StockTableViewController.swift */,
+				B26A1869216637E700D15941 /* StockTableViewCell.swift */,
 				8D9167A621695A7C00195D04 /* structs.swift */,
 				B2A4EBDC216B632F00F1BF6E /* ItemDetailViewController.swift */,
 				B235D1172165F3C900EDF439 /* Main.storyboard */,
@@ -156,13 +156,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2A4EBDD216B632F00F1BF6E /* ItemDetailViewController.swift in Sources */,
-				B26A186C216649CA00D15941 /* SecondTableViewSubCell.swift in Sources */,
-				B235D1162165F3C900EDF439 /* SecondTableViewController.swift in Sources */,
+				B26A186C216649CA00D15941 /* SessionTableViewSubCell.swift in Sources */,
+				B235D1162165F3C900EDF439 /* SessionTableViewController.swift in Sources */,
 				8D9167A721695A7C00195D04 /* structs.swift in Sources */,
 				B235D1122165F3C900EDF439 /* AppDelegate.swift in Sources */,
-				B26A18642165FB1E00D15941 /* ThirdTableViewController.swift in Sources */,
-				B26A1868216637DB00D15941 /* SecondTableViewCell.swift in Sources */,
-				B26A186A216637E700D15941 /* ThirdTableViewCell.swift in Sources */,
+				B26A18642165FB1E00D15941 /* StockTableViewController.swift in Sources */,
+				B26A1868216637DB00D15941 /* SessionTableViewCell.swift in Sources */,
+				B26A186A216637E700D15941 /* StockTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

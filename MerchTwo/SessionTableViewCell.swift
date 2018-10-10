@@ -1,5 +1,5 @@
 //
-//  SecondTableViewCell.swift
+//  SessionTableViewCell.swift
 //  MerchTwo
 //
 //  Created by JSudau on 04.10.18.
@@ -8,23 +8,24 @@
 
 import UIKit
 
-class SecondTableViewCell: UITableViewCell {
+class SessionTableViewCell: UITableViewCell {
 	
-	weak var parentSecondTableViewController : SecondTableViewController?
-    weak var parentThirdTableViewController : ThirdTableViewController?
+	weak var parentSessionTableViewController : SessionTableViewController?
+    weak var parentStockTableViewController : StockTableViewController?
 	var itemOptions = [String]()
 	var isPromo: Bool!
 	
 	@IBOutlet weak var cellImage: UIImageView!
 	@IBOutlet weak var cellTitle: UILabel!
 	@IBOutlet weak var cellSubtitle: UILabel!
+	@IBOutlet weak var sellButton: UIStepper!
 	
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		
-        if parentSecondTableViewController != nil {
+        if parentSessionTableViewController != nil {
             print("second")
-        } else if parentThirdTableViewController != nil {
+        } else if parentStockTableViewController != nil {
             print("third")
         }
 		
@@ -35,8 +36,15 @@ class SecondTableViewCell: UITableViewCell {
 	
 	override func setSelected(_ selected: Bool, animated: Bool) {
 		super.setSelected(selected, animated: animated)
-		
 		// Configure the view for the selected state
+	}
+	
+	override func setEditing(_ editing: Bool, animated: Bool) {
+		super.setEditing(editing, animated: animated)
+		
+		if parentSessionTableViewController != nil {
+			sellButton.isHidden = isEditing
+		}
 	}
 	
 	func createSwitch () -> UISwitch {
@@ -70,7 +78,7 @@ class SecondTableViewCell: UITableViewCell {
 		for option in itemOptions {
 			alert.addAction(UIAlertAction(title: option, style: .default , handler:{ (UIAlertAction)in
 				print("User click \(option) button with promo set to \(self.isPromo!) and isAdd set to \(isAdd)")
-				self.parentSecondTableViewController?.navigationItem.title = "Berlin: 536€"
+				self.parentSessionTableViewController?.navigationItem.title = "Berlin: 536€"
 			}))
 		}
 		
@@ -79,12 +87,12 @@ class SecondTableViewCell: UITableViewCell {
 		}))
 		
 		if let popoverController = alert.popoverPresentationController {
-			popoverController.sourceView = parentSecondTableViewController?.view
-			popoverController.sourceRect = CGRect(x: (parentSecondTableViewController?.view.bounds.midX)!, y: (parentSecondTableViewController?.view.bounds.midY)!, width: 0, height: 0)
+			popoverController.sourceView = parentSessionTableViewController?.view
+			popoverController.sourceRect = CGRect(x: (parentSessionTableViewController?.view.bounds.midX)!, y: (parentSessionTableViewController?.view.bounds.midY)!, width: 0, height: 0)
 			popoverController.permittedArrowDirections = []
 		}
 		
-		parentSecondTableViewController?.present(alert, animated: true, completion: {
+		parentSessionTableViewController?.present(alert, animated: true, completion: {
 			print("completion block")
 		})
 		

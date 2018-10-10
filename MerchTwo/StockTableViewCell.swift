@@ -1,5 +1,5 @@
 //
-//  ThirdTableViewCell.swift
+//  StockTableViewCell.swift
 //  MerchTwo
 //
 //  Created by JSudau on 04.10.18.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class ThirdTableViewCell: UITableViewCell {
+class StockTableViewCell: UITableViewCell {
 	
-	weak var parentViewController : ThirdTableViewController?
+	weak var parentViewController : StockTableViewController?
 	@IBOutlet weak var cellImage: UIImageView!
 	
 	override func awakeFromNib() {

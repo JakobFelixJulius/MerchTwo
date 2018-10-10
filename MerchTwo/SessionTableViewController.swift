@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  SessionViewController.swift
 //  MerchTwo
 //
 //  Created by JSudau on 04.10.18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecondTableViewController: UITableViewController, UISearchResultsUpdating {
+class SessionTableViewController: UITableViewController, UISearchResultsUpdating {
 	
 	var stockItemsData = [ItemData]()
     var filteredItems = [ItemData]()
@@ -33,8 +33,10 @@ class SecondTableViewController: UITableViewController, UISearchResultsUpdating 
 						  ItemData(id: "unique3", opened: false, imageData: imageData2, title: "Hoodie White", options: ["S", "M", "L", "XL", "XXL"], price: 30.0, stock: [1, 2, 3], sold: [2, 0, 6]),
 						  ItemData(id: "unique4", opened: false, imageData: imageData, title: "Gymbag", options: ["S", "M"], price: 12.5, stock: [1, 2, 3], sold: [0, 0, 18]),
 						  ItemData(id: "unique5", opened: false, imageData: imageData1, title: "Poster 2. Album", options: ["S", "M", "L", "XL"], price: 5.0, stock: [1, 2, 3], sold: [1000, 98, 500]),
-						  ItemData(id: "unique6", opened: false, imageData: imageData2, title: "Songbook 1. Album", options: ["XS", "S", "M", "L", "XL", "XXL"], price: 20.0, stock: [1, 2, 3], sold: [9000, 900, 99]),
+						  ItemData(id: "unique6", opened: false, imageData: imageData2, title: "Songbook Session Edition 1. Album", options: ["XS", "S", "M", "L", "XL", "XXL"], price: 20.0, stock: [1, 2, 3], sold: [9000, 900, 99]),
 						  ItemData(id: "unique7", opened: false, imageData: imageData, title: "Lighter", options: ["S", "M", "L"], price: 3.5, stock: [1, 2, 3], sold: [0, 2, 0])]
+		
+		UserDefaults.standard.set(try? PropertyListEncoder().encode(stockItemsData), forKey:"stockItemsData")
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -186,9 +188,9 @@ class SecondTableViewController: UITableViewController, UISearchResultsUpdating 
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let dataIndex = indexPath.row - 1
 		if indexPath.row == 0 {
-			let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? SecondTableViewCell
+			let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? SessionTableViewCell
             let item = isFiltering() ? filteredItems[indexPath.section] : stockItemsData[indexPath.section]
-			cell?.parentSecondTableViewController = self
+			cell?.parentSessionTableViewController = self
             cell?.cellImage.image = UIImage(data: item.imageData)
 			cell?.cellTitle.text = item.title
 			cell?.cellSubtitle.text = "\(item.price.clean)€, \(item.sold.reduce(0, +)) sold"
@@ -196,7 +198,7 @@ class SecondTableViewController: UITableViewController, UISearchResultsUpdating 
 			cell?.editingAccessoryType = .disclosureIndicator
 			return cell!
 		} else {
-			let cell = tableView.dequeueReusableCell(withIdentifier: "SubCell") as? SecondTableViewSubCell
+			let cell = tableView.dequeueReusableCell(withIdentifier: "SubCell") as? SessionTableViewSubCell
 			cell?.textLabel?.text = stockItemsData[indexPath.section].options[dataIndex]
 			return cell!
 		}

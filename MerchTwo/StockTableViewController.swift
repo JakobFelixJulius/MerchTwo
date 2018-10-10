@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  SessionViewController.swift
 //  MerchTwo
 //
 //  Created by JSudau on 04.10.18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ThirdTableViewController: UITableViewController, UISearchResultsUpdating {
+class StockTableViewController: UITableViewController, UISearchResultsUpdating {
     
     var stockItemsData = [ItemData]()
     var filteredItems = [ItemData]()
@@ -151,15 +151,15 @@ class ThirdTableViewController: UITableViewController, UISearchResultsUpdating {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let dataIndex = indexPath.row - 1
         if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? SecondTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? SessionTableViewCell
             let item = isFiltering() ? filteredItems[indexPath.section] : stockItemsData[indexPath.section]
-            cell?.parentThirdTableViewController = self
+            cell?.parentStockTableViewController = self
             cell?.cellImage.image = UIImage(data: item.imageData)
             cell?.cellTitle.text = item.title
 			cell?.editingAccessoryType = .disclosureIndicator
             return cell!
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SubCell") as? SecondTableViewSubCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SubCell") as? SessionTableViewSubCell
             cell?.textLabel?.text = stockItemsData[indexPath.section].options[dataIndex]
             return cell!
         }

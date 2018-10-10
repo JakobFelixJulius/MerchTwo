@@ -1,5 +1,5 @@
 //
-//  SecondTableViewSubCell.swift
+//  SessionTableViewSubCell.swift
 //  MerchTwo
 //
 //  Created by JSudau on 04.10.18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecondTableViewSubCell: UITableViewCell {
+class SessionTableViewSubCell: UITableViewCell {
 
 	override func awakeFromNib() {
 		super.awakeFromNib()
