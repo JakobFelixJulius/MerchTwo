@@ -15,6 +15,7 @@ class StockTableViewController: UITableViewController, UISearchResultsUpdating {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTabAndToolBar()
         setupNavBar()
         setupSearchBar()
     }
@@ -27,6 +28,13 @@ class StockTableViewController: UITableViewController, UISearchResultsUpdating {
 	override func viewWillAppear(_ animated: Bool) {
 		self.tableView.reloadData()
 	}
+    
+    func setupTabAndToolBar() {
+        self.tabBarController?.tabBar.isHidden = false
+        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: nil)
+        let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        toolbarItems = [add, spacer]
+    }
     
     func setupNavBar() {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: (self.tableView.isEditing ? "Done" : "Edit"), style: .plain, target: self, action: #selector(editSession(_:)))
@@ -72,8 +80,9 @@ class StockTableViewController: UITableViewController, UISearchResultsUpdating {
     }
 	
 	@objc func editSession(_ sender: Any) {
-		self.tableView.setEditing(!self.tableView.isEditing, animated: true)
-		setupNavBar()
+        self.tableView.setEditing(!self.tableView.isEditing, animated: true)
+        self.tabBarController?.tabBar.isHidden = self.tableView.isEditing
+        setupNavBar()
 	}
 	
 	@objc func addItem(_ sender: Any) {

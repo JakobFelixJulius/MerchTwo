@@ -15,6 +15,8 @@ class SessionTableViewController: UITableViewController, UISearchResultsUpdating
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+
+        setupTabAndToolBar()
 		setupNavBar()
         setupSearchBar()
 	}
@@ -27,6 +29,13 @@ class SessionTableViewController: UITableViewController, UISearchResultsUpdating
 	override func viewWillAppear(_ animated: Bool) {
 		self.tableView.reloadData()
 	}
+    
+    func setupTabAndToolBar() {
+        self.tabBarController?.tabBar.isHidden = false
+        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: nil)
+        let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        toolbarItems = [add, spacer]
+    }
 	
 	func setupNavBar() {
 		var right1 = UIBarButtonItem()
@@ -42,13 +51,6 @@ class SessionTableViewController: UITableViewController, UISearchResultsUpdating
 		self.navigationItem.title = "Berlin: 0€"
 		
 		navigationController?.navigationBar.prefersLargeTitles = true
-        
-//        let textField = UITextField(frame: CGRect(x: 0, y: 0, width: 200, height: 22))
-//        textField.text = "Title"
-//        textField.font = UIFont.systemFont(ofSize: 19)
-//        textField.textColor = UIColor.black
-//        textField.textAlignment = .center
-//        self.navigationItem.titleView = textField
 	}
     
     func setupSearchBar() {
@@ -96,8 +98,9 @@ class SessionTableViewController: UITableViewController, UISearchResultsUpdating
     }
     
     @objc func editSession(_ sender: Any) {
-		self.tableView.setEditing(!self.tableView.isEditing, animated: true)
-		setupNavBar()
+        self.tableView.setEditing(!self.tableView.isEditing, animated: true)
+        self.tabBarController?.tabBar.isHidden = self.tableView.isEditing
+        setupNavBar()
     }
     
     func createAlert(title: String, message: String, options: [String], sender: Any) {
@@ -127,24 +130,20 @@ class SessionTableViewController: UITableViewController, UISearchResultsUpdating
 		globalAppData.stock.stockItems.remove(at: sourceIndexPath.row)
 		globalAppData.stock.stockItems.insert(movedObject, at: destinationIndexPath.row)
 	}
-	
-	override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
-	{
-		let deleteAction = UIContextualAction(style: .destructive, title: "Edit") { (action, view, handler) in
-			print("Add Action Tapped")
-		}
-		deleteAction.backgroundColor = .orange
-		let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
-		return configuration
-	}
-	
+
 	override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
 	{
 		let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, handler) in
 			print("Delete Action Tapped")
 		}
+        
+        let editAction = UIContextualAction(style: .destructive, title: "Edit") { (action, view, handler) in
+            print("Add Action Tapped")
+        }
+        
+        editAction.backgroundColor = .orange
 		deleteAction.backgroundColor = .red
-		let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+		let configuration = UISwipeActionsConfiguration(actions: [deleteAction, editAction])
 		return configuration
 	}
 	
@@ -221,3 +220,13 @@ extension Float {
 		return self.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", self) : String(format: "%.2f", self)
 	}
 }
+
+//class SUSourceTabController: UITabBarControllerDelegate {
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//    }
+//
+//    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+//        self.tabBarController?.tabBar.isHidden = false
+//    }
+//}

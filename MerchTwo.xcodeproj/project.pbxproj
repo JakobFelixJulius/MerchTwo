@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8D9167A721695A7C00195D04 /* structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9167A621695A7C00195D04 /* structs.swift */; };
+		8DEE7677216EA6C20086A173 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEE7676216EA6C20086A173 /* TabBarController.swift */; };
 		B235D1122165F3C900EDF439 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B235D1112165F3C900EDF439 /* AppDelegate.swift */; };
 		B235D1162165F3C900EDF439 /* SessionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B235D1152165F3C900EDF439 /* SessionTableViewController.swift */; };
 		B235D1192165F3C900EDF439 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B235D1172165F3C900EDF439 /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		8D9167A621695A7C00195D04 /* structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = structs.swift; sourceTree = "<group>"; };
+		8DEE7676216EA6C20086A173 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		B235D10E2165F3C900EDF439 /* MerchTwo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MerchTwo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B235D1112165F3C900EDF439 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B235D1152165F3C900EDF439 /* SessionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTableViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				B235D11A2165F3C900EDF439 /* Assets.xcassets */,
 				B235D11C2165F3C900EDF439 /* LaunchScreen.storyboard */,
 				B235D11F2165F3C900EDF439 /* Info.plist */,
+				8DEE7676216EA6C20086A173 /* TabBarController.swift */,
 			);
 			path = MerchTwo;
 			sourceTree = "<group>";
@@ -163,6 +166,7 @@
 			files = (
 				B2A4EBDD216B632F00F1BF6E /* ItemDetailViewController.swift in Sources */,
 				B295FE83216E2D8200F156AA /* SelectSessionItemsCell.swift in Sources */,
+				8DEE7677216EA6C20086A173 /* TabBarController.swift in Sources */,
 				B26A186C216649CA00D15941 /* SessionTableViewSubCell.swift in Sources */,
 				B235D1162165F3C900EDF439 /* SessionTableViewController.swift in Sources */,
 				8D9167A721695A7C00195D04 /* structs.swift in Sources */,

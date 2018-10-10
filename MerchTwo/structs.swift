@@ -103,13 +103,13 @@ struct SessionData: Codable {
 //--------------------------------------------------------------
 func initAppData() -> AppData{
 	let image = UIImage(named: "tshirt1.png")
-	let imageData:Data = UIImagePNGRepresentation(image!)! as Data
+    let imageData:Data = image!.pngData()! as Data
 	
 	let image1 = UIImage(named: "tshirt2.png")
-	let imageData1:Data = UIImagePNGRepresentation(image1!)! as Data
+    let imageData1:Data = image1!.pngData()! as Data
 	
 	let image2 = UIImage(named: "tshirt3.png")
-	let imageData2:Data = UIImagePNGRepresentation(image2!)! as Data
+    let imageData2:Data = image2!.pngData()! as Data
 	
 	let stockItemsData = [ItemData(id: "unique1", opened: false, imageData: imageData, title: "Tour T-Shirt", options: ["S", "M", "L"], price: 15.0, stock: [1, 2, 3], sold: [33, 0, 2]),
 						  ItemData(id: "unique2", opened: false, imageData: imageData1, title: "Black T-Shirt", options: ["XS", "S", "M", "L", "XL"], price: 18.0, stock: [1, 2, 3], sold: [100, 30, 3]),

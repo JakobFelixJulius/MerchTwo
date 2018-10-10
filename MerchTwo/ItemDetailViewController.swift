@@ -52,12 +52,12 @@ class ItemDetailViewController: UIViewController, UINavigationControllerDelegate
 		imagePickerController.allowsEditing = false
 		
 		alert.addAction(UIAlertAction(title: "Camera Roll", style: .default , handler:{ (UIAlertAction)in
-			imagePickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary
+            imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
 			self.present(imagePickerController, animated: true, completion: nil)
 		}))
 		
 		alert.addAction(UIAlertAction(title: "Take a Picture", style: .default , handler:{ (UIAlertAction)in
-			imagePickerController.sourceType = UIImagePickerControllerSourceType.camera
+            imagePickerController.sourceType = UIImagePickerController.SourceType.camera
 			self.present(imagePickerController, animated: true, completion: nil)
 		}))
 		
@@ -71,17 +71,18 @@ class ItemDetailViewController: UIViewController, UINavigationControllerDelegate
 		
 		self.present(alert, animated: true, completion: nil)
 	}
-	
-	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-		if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-			let imageData:Data = UIImagePNGRepresentation(image)! as Data
-			item.imageData = imageData
-			itemImage.image = image
-		} else {
-			print("There was a problem getting the image")
-		}
-		picker.dismiss(animated: true, completion: nil)
-	}
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            let imageData:Data = image.pngData()! as Data
+            item.imageData = imageData
+            itemImage.image = image
+        } else {
+            print("There was a problem getting the image")
+        }
+        picker.dismiss(animated: true, completion: nil)
+    }
+
 	
 	func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
 		picker.dismiss(animated: true, completion: nil)
