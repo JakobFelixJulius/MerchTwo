@@ -15,6 +15,7 @@ struct ItemData: Codable {
     var imageData = Data()
     var title = String()
     var options = [String]()
+	var price = Float()
     var stock = [Int]()
     var sold = [Int]()
 }
@@ -23,6 +24,7 @@ struct ItemData: Codable {
 struct AppData: Codable {
     var currentUser = String()
     var loggedIn = Bool()
+	var currency = String()
 	var stock = StockData()
 	var sessions = [SessionData]()
 	

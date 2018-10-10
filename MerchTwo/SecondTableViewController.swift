@@ -18,15 +18,36 @@ class SecondTableViewController: UITableViewController, UISearchResultsUpdating 
 		super.viewDidLoad()
 		setupNavBar()
         setupSearchBar()
-        
-        if let data = UserDefaults.standard.value(forKey:"stockItemsData") as? Data {
-            stockItemsData = try! PropertyListDecoder().decode(Array<ItemData>.self, from: data)
-        }
+		
+		let image = UIImage(named: "tshirt1.png")
+		let imageData:Data = UIImagePNGRepresentation(image!)! as Data
+		
+		let image1 = UIImage(named: "tshirt2.png")
+		let imageData1:Data = UIImagePNGRepresentation(image1!)! as Data
+		
+		let image2 = UIImage(named: "tshirt3.png")
+		let imageData2:Data = UIImagePNGRepresentation(image2!)! as Data
+		
+		stockItemsData = [ItemData(id: "unique1", opened: false, imageData: imageData, title: "Tour T-Shirt", options: ["S", "M", "L"], price: 15.0, stock: [1, 2, 3], sold: [33, 0, 2]),
+						  ItemData(id: "unique2", opened: false, imageData: imageData1, title: "Black T-Shirt", options: ["XS", "S", "M", "L", "XL"], price: 18.0, stock: [1, 2, 3], sold: [100, 30, 3]),
+						  ItemData(id: "unique3", opened: false, imageData: imageData2, title: "Hoodie White", options: ["S", "M", "L", "XL", "XXL"], price: 30.0, stock: [1, 2, 3], sold: [2, 0, 6]),
+						  ItemData(id: "unique4", opened: false, imageData: imageData, title: "Gymbag", options: ["S", "M"], price: 12.5, stock: [1, 2, 3], sold: [0, 0, 18]),
+						  ItemData(id: "unique5", opened: false, imageData: imageData1, title: "Poster 2. Album", options: ["S", "M", "L", "XL"], price: 5.0, stock: [1, 2, 3], sold: [1000, 98, 500]),
+						  ItemData(id: "unique6", opened: false, imageData: imageData2, title: "Songbook 1. Album", options: ["XS", "S", "M", "L", "XL", "XXL"], price: 20.0, stock: [1, 2, 3], sold: [9000, 900, 99]),
+						  ItemData(id: "unique7", opened: false, imageData: imageData, title: "Lighter", options: ["S", "M", "L"], price: 3.5, stock: [1, 2, 3], sold: [0, 2, 0])]
 	}
 
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
+	}
+	
+	override func viewWillAppear(_ animated: Bool) {
+		if let data = UserDefaults.standard.value(forKey:"stockItemsData") as? Data {
+			stockItemsData = try! PropertyListDecoder().decode(Array<ItemData>.self, from: data)
+		}
+		
+		self.tableView.reloadData()
 	}
 	
 	func setupNavBar() {
@@ -170,6 +191,8 @@ class SecondTableViewController: UITableViewController, UISearchResultsUpdating 
 			cell?.parentSecondTableViewController = self
             cell?.cellImage.image = UIImage(data: item.imageData)
 			cell?.cellTitle.text = item.title
+			cell?.cellSubtitle.text = "\(item.price.clean)€, \(item.sold.reduce(0, +)) sold"
+			cell?.itemOptions = item.options
 			cell?.editingAccessoryType = .disclosureIndicator
 			return cell!
 		} else {
@@ -212,5 +235,11 @@ class SecondTableViewController: UITableViewController, UISearchResultsUpdating 
 				destination.item = sender as! ItemData
 			}
 		}
+	}
+}
+
+extension Float {
+	var clean: String {
+		return self.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", self) : String(format: "%.2f", self)
 	}
 }
