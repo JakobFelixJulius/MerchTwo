@@ -38,9 +38,11 @@ class ItemDetailViewController: UIViewController, UINavigationControllerDelegate
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
-		globalAppData.stock.stockItems[globalAppData.stock.findStockItemIndex(item: item)] = item
-		globalAppData.sessions[globalAppData.activeSession].sessionItems[globalAppData.stock.findStockItemIndex(item: item)] = item
-		// inactive sessions will keep the data of the items when they were active
+		if !addItem {
+			globalAppData.stock.stockItems[globalAppData.stock.findStockItemIndex(item: item)] = item
+			globalAppData.sessions[globalAppData.activeSession].sessionItems[globalAppData.stock.findStockItemIndex(item: item)] = item
+			// inactive sessions will keep the data of the items when they were active
+		}
 	}
 	
 	@objc func imageTapped(_ sender: Any) {
