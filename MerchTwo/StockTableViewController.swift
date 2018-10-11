@@ -119,6 +119,7 @@ class StockTableViewController: UITableViewController, UISearchResultsUpdating {
 		let movedObject = globalAppData.stock.stockItems[sourceIndexPath.row]
 		globalAppData.stock.stockItems.remove(at: sourceIndexPath.row)
 		globalAppData.stock.stockItems.insert(movedObject, at: destinationIndexPath.row)
+		self.tableView.reloadData()
 	}
 	
 	override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?

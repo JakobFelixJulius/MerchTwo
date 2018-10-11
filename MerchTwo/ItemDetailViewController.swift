@@ -39,6 +39,8 @@ class ItemDetailViewController: UIViewController, UINavigationControllerDelegate
 	
 	override func viewWillDisappear(_ animated: Bool) {
 		globalAppData.stock.stockItems[globalAppData.stock.findStockItemIndex(item: item)] = item
+		globalAppData.sessions[globalAppData.activeSession].sessionItems[globalAppData.stock.findStockItemIndex(item: item)] = item
+		// inactive sessions will keep the data of the items when they were active
 	}
 	
 	@objc func imageTapped(_ sender: Any) {
@@ -59,12 +61,12 @@ class ItemDetailViewController: UIViewController, UINavigationControllerDelegate
         }
 		
 		alert.addAction(UIAlertAction(title: "Camera Roll", style: .default , handler:{ (UIAlertAction)in
-            imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
+			imagePickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary
 			self.present(imagePickerController, animated: true, completion: nil)
 		}))
 		
 		alert.addAction(UIAlertAction(title: "Take a Picture", style: .default , handler:{ (UIAlertAction)in
-            imagePickerController.sourceType = UIImagePickerController.SourceType.camera
+            imagePickerController.sourceType = UIImagePickerControllerSourceType.camera
 			self.present(imagePickerController, animated: true, completion: nil)
 		}))
 		
@@ -75,16 +77,16 @@ class ItemDetailViewController: UIViewController, UINavigationControllerDelegate
 		self.present(alert, animated: true, completion: nil)
 	}
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            let imageData:Data = image.pngData()! as Data
-            item.imageData = imageData
-            itemImage.image = image
-        } else {
-            print("There was a problem getting the image")
-        }
-        picker.dismiss(animated: true, completion: nil)
-    }
+	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+		if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+			let imageData:Data = UIImagePNGRepresentation(image)! as Data
+			item.imageData = imageData
+			itemImage.image = image
+		} else {
+			print("There was a problem getting the image")
+		}
+		picker.dismiss(animated: true, completion: nil)
+	}
 
 	
 	func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

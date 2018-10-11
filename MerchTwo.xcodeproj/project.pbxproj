@@ -73,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				B235D1112165F3C900EDF439 /* AppDelegate.swift */,
+				8DEE7676216EA6C20086A173 /* TabBarController.swift */,
 				B295FE80216E251E00F156AA /* SelectSessionItemsViewController.swift */,
 				B295FE82216E2D8200F156AA /* SelectSessionItemsCell.swift */,
 				B235D1152165F3C900EDF439 /* SessionTableViewController.swift */,
@@ -86,7 +87,6 @@
 				B235D11A2165F3C900EDF439 /* Assets.xcassets */,
 				B235D11C2165F3C900EDF439 /* LaunchScreen.storyboard */,
 				B235D11F2165F3C900EDF439 /* Info.plist */,
-				8DEE7676216EA6C20086A173 /* TabBarController.swift */,
 			);
 			path = MerchTwo;
 			sourceTree = "<group>";

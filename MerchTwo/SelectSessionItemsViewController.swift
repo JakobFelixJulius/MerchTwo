@@ -54,7 +54,7 @@ class SelectSessionItemsViewController: UIViewController, UITableViewDelegate, U
 //	}
 //
 //	func filterContentForSearchText(_ searchText: String, scope: String = "All") {
-//		filteredItems = globalAppData.stock.stockItems.filter({( item : ItemData) -> Bool in
+//		filteredItems = globalAppData.sessions[globalAppData.activeSession].sessionItems.filter({( item : ItemData) -> Bool in
 //			return item.title.lowercased().contains(searchText.lowercased())
 //		})
 //
@@ -66,7 +66,7 @@ class SelectSessionItemsViewController: UIViewController, UITableViewDelegate, U
 //	}
 
 	func numberOfSections(in tableView: UITableView) -> Int {
-		return /*isFiltering() ? filteredItems.count : */globalAppData.stock.stockItems.count
+		return /*isFiltering() ? filteredItems.count : */globalAppData.sessions[globalAppData.activeSession].sessionItems.count
 	}
 
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -75,14 +75,14 @@ class SelectSessionItemsViewController: UIViewController, UITableViewDelegate, U
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? SelectSessionItemCell
-		let item = globalAppData.stock.stockItems[indexPath.section]
+		let item = globalAppData.sessions[globalAppData.activeSession].sessionItems[indexPath.section]
 		cell?.cellImage.image = UIImage(data: item.imageData)
 		cell?.cellTitle.text = item.title
 		return cell!
 	}
 	
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return UITableViewCell.EditingStyle.init(rawValue: 3)!
+	func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+		return UITableViewCellEditingStyle.init(rawValue: 3)!
 	}
 
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

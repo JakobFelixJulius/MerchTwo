@@ -73,7 +73,7 @@ class SessionTableViewController: UITableViewController, UISearchResultsUpdating
     }
     
     func filterContentForSearchText(_ searchText: String, scope: String = "All") {
-        filteredItems = globalAppData.stock.stockItems.filter({( item : ItemData) -> Bool in
+        filteredItems = globalAppData.sessions[globalAppData.activeSession].sessionItems.filter({( item : ItemData) -> Bool in
             return item.title.lowercased().contains(searchText.lowercased())
         })
         
@@ -126,9 +126,10 @@ class SessionTableViewController: UITableViewController, UISearchResultsUpdating
     }
 	
 	override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-		let movedObject = globalAppData.stock.stockItems[sourceIndexPath.row]
-		globalAppData.stock.stockItems.remove(at: sourceIndexPath.row)
-		globalAppData.stock.stockItems.insert(movedObject, at: destinationIndexPath.row)
+		let movedObject = globalAppData.sessions[globalAppData.activeSession].sessionItems[sourceIndexPath.section]
+		globalAppData.sessions[globalAppData.activeSession].sessionItems.remove(at: sourceIndexPath.section)
+		globalAppData.sessions[globalAppData.activeSession].sessionItems.insert(movedObject, at: destinationIndexPath.section)
+		self.tableView.reloadData()
 	}
 
 	override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
@@ -148,13 +149,13 @@ class SessionTableViewController: UITableViewController, UISearchResultsUpdating
 	}
 	
 	override func numberOfSections(in tableView: UITableView) -> Int {
-		return isFiltering() ? filteredItems.count : globalAppData.stock.stockItems.count
+		return isFiltering() ? filteredItems.count : globalAppData.sessions[globalAppData.activeSession].sessionItems.count
 	}
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		
-		if globalAppData.stock.stockItems[section].opened {
-			return globalAppData.stock.stockItems[section].options.count + 1
+		if globalAppData.sessions[globalAppData.activeSession].sessionItems[section].opened {
+			return globalAppData.sessions[globalAppData.activeSession].sessionItems[section].options.count + 1
 		} else {
 			return 1
 		}
@@ -164,7 +165,7 @@ class SessionTableViewController: UITableViewController, UISearchResultsUpdating
         let dataIndex = indexPath.row - 1
 		if indexPath.row == 0 {
 			let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? SessionTableViewCell
-            let item = isFiltering() ? filteredItems[indexPath.section] : globalAppData.stock.stockItems[indexPath.section]
+            let item = isFiltering() ? filteredItems[indexPath.section] : globalAppData.sessions[globalAppData.activeSession].sessionItems[indexPath.section]
 			cell?.parentSessionTableViewController = self
             cell?.cellImage.image = UIImage(data: item.imageData)
 			cell?.cellTitle.text = item.title
@@ -174,23 +175,25 @@ class SessionTableViewController: UITableViewController, UISearchResultsUpdating
 			return cell!
 		} else {
 			let cell = tableView.dequeueReusableCell(withIdentifier: "SubCell") as? SessionTableViewSubCell
-			cell?.textLabel?.text = globalAppData.stock.stockItems[indexPath.section].options[dataIndex]
+			cell?.textLabel?.text = globalAppData.sessions[globalAppData.activeSession].sessionItems[indexPath.section].options[dataIndex]
 			return cell!
 		}
 	}
 	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		let row = indexPath.row
+		let section = indexPath.section
 		if indexPath.row == 0  {
 			if self.tableView.isEditing {
-				let item = globalAppData.stock.stockItems[indexPath.section]
+				let item = globalAppData.sessions[globalAppData.activeSession].sessionItems[indexPath.section]
 				performSegue(withIdentifier: "showSessionItemDetailView", sender: item)
 			} else {
-				if globalAppData.stock.stockItems[indexPath.section].opened == true {
-					globalAppData.stock.stockItems[indexPath.section].opened = false
+				if globalAppData.sessions[globalAppData.activeSession].sessionItems[indexPath.section].opened == true {
+					globalAppData.sessions[globalAppData.activeSession].sessionItems[indexPath.section].opened = false
 					let sections = IndexSet.init(integer: indexPath.section)
 					tableView.reloadSections(sections, with: .none)
 				} else {
-					globalAppData.stock.stockItems[indexPath.section].opened = true
+					globalAppData.sessions[globalAppData.activeSession].sessionItems[indexPath.section].opened = true
 					let sections = IndexSet.init(integer: indexPath.section)
 					tableView.reloadSections(sections, with: .none)
 				}
@@ -220,13 +223,3 @@ extension Float {
 		return self.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", self) : String(format: "%.2f", self)
 	}
 }
-
-//class SUSourceTabController: UITabBarControllerDelegate {
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//    }
-//
-//    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-//        self.tabBarController?.tabBar.isHidden = false
-//    }
-//}
