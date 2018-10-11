@@ -181,8 +181,6 @@ class SessionTableViewController: UITableViewController, UISearchResultsUpdating
 	}
 	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		let row = indexPath.row
-		let section = indexPath.section
 		if indexPath.row == 0  {
 			if self.tableView.isEditing {
 				let item = globalAppData.sessions[globalAppData.activeSession].sessionItems[indexPath.section]

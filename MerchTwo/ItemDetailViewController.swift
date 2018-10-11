@@ -8,28 +8,20 @@
 
 import UIKit
 
-class ItemDetailViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class ItemDetailViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITableViewDelegate, UITableViewDataSource {
 	
 	var item = ItemData()
     var addItem = Bool()
-    @IBOutlet weak var itemImage: UIImageView!
-	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
+		navigationController?.navigationBar.prefersLargeTitles = false
         
         if addItem {
-            self.title = "new item"
+            self.title = "Add"
         } else {
-            self.title = item.title
+            self.title = "Details"
         }
-		
-		let pictureTap = UITapGestureRecognizer(target: self, action: #selector(ItemDetailViewController.imageTapped(_:)))
-		itemImage.addGestureRecognizer(pictureTap)
-		itemImage.isUserInteractionEnabled = true
-		
-		self.itemImage.image = UIImage(data: item.imageData)
-        self.itemImage.layer.cornerRadius = self.itemImage.frame.size.width / 2
-        self.itemImage.clipsToBounds = true
 	}
 	
 	override func didReceiveMemoryWarning() {
@@ -83,7 +75,7 @@ class ItemDetailViewController: UIViewController, UINavigationControllerDelegate
 		if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
 			let imageData:Data = UIImagePNGRepresentation(image)! as Data
 			item.imageData = imageData
-			itemImage.image = image
+			//itemImage.image = image
 		} else {
 			print("There was a problem getting the image")
 		}
@@ -93,6 +85,65 @@ class ItemDetailViewController: UIViewController, UINavigationControllerDelegate
 	
 	func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
 		picker.dismiss(animated: true, completion: nil)
+	}
+	
+	func numberOfSections(in tableView: UITableView) -> Int {
+		return 4
+	}
+	
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		if section == 0 {
+			return 0
+		} else if section == 1 {
+			return 1
+		} else {
+			return 3
+		}
+	}
+	
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
+		cell?.textLabel?.text = "Item"
+		return cell!
+	}
+	
+	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		return "Title"
+	}
+	
+	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
+	{
+		// This is where you would change section header content
+		if section == 0 {
+			let cell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell") as? ItemDetailViewHeaderCell
+			
+			cell?.cellImage.image = UIImage(named: "tshirt1.png")
+			
+			if addItem {
+				cell?.cellTitle.text = "New Item"
+			} else {
+				cell?.cellTitle.text = item.title
+			}
+			
+			let pictureTap = UITapGestureRecognizer(target: self, action: #selector(ItemDetailViewController.imageTapped(_:)))
+			cell?.cellImage.addGestureRecognizer(pictureTap)
+			cell?.cellImage.isUserInteractionEnabled = true
+			
+			return cell
+		}
+		return nil
+	}
+	
+	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
+	{
+		if section == 0 {
+			return 148
+		} else if section == 1 {
+			//skip section 1 because no title can be displayed
+			return 0
+		} else {
+			return 44
+		}
 	}
 }
 

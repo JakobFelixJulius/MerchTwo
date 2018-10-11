@@ -20,6 +20,7 @@
 		B26A186C216649CA00D15941 /* SessionTableViewSubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26A186B216649CA00D15941 /* SessionTableViewSubCell.swift */; };
 		B295FE81216E251E00F156AA /* SelectSessionItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B295FE80216E251E00F156AA /* SelectSessionItemsViewController.swift */; };
 		B295FE83216E2D8200F156AA /* SelectSessionItemsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B295FE82216E2D8200F156AA /* SelectSessionItemsCell.swift */; };
+		B29C7F69216F5A8600118058 /* ItemDetailViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29C7F68216F5A8600118058 /* ItemDetailViewHeaderCell.swift */; };
 		B2A4EBDD216B632F00F1BF6E /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A4EBDC216B632F00F1BF6E /* ItemDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		B26A186B216649CA00D15941 /* SessionTableViewSubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTableViewSubCell.swift; sourceTree = "<group>"; };
 		B295FE80216E251E00F156AA /* SelectSessionItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSessionItemsViewController.swift; sourceTree = "<group>"; };
 		B295FE82216E2D8200F156AA /* SelectSessionItemsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSessionItemsCell.swift; sourceTree = "<group>"; };
+		B29C7F68216F5A8600118058 /* ItemDetailViewHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewHeaderCell.swift; sourceTree = "<group>"; };
 		B2A4EBDC216B632F00F1BF6E /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,6 +84,7 @@
 				B26A18632165FB1E00D15941 /* StockTableViewController.swift */,
 				B26A1869216637E700D15941 /* StockTableViewCell.swift */,
 				8D9167A621695A7C00195D04 /* structs.swift */,
+				B29C7F68216F5A8600118058 /* ItemDetailViewHeaderCell.swift */,
 				B2A4EBDC216B632F00F1BF6E /* ItemDetailViewController.swift */,
 				B235D1172165F3C900EDF439 /* Main.storyboard */,
 				B235D11A2165F3C900EDF439 /* Assets.xcassets */,
@@ -169,6 +172,7 @@
 				8DEE7677216EA6C20086A173 /* TabBarController.swift in Sources */,
 				B26A186C216649CA00D15941 /* SessionTableViewSubCell.swift in Sources */,
 				B235D1162165F3C900EDF439 /* SessionTableViewController.swift in Sources */,
+				B29C7F69216F5A8600118058 /* ItemDetailViewHeaderCell.swift in Sources */,
 				8D9167A721695A7C00195D04 /* structs.swift in Sources */,
 				B295FE81216E251E00F156AA /* SelectSessionItemsViewController.swift in Sources */,
 				B235D1122165F3C900EDF439 /* AppDelegate.swift in Sources */,
