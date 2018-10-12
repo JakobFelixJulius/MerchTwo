@@ -160,7 +160,7 @@ class SessionTableViewController: UITableViewController, UISearchResultsUpdating
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		
 		if globalAppData.sessions[globalAppData.activeSession].sessionItems[section].opened {
-			return globalAppData.sessions[globalAppData.activeSession].sessionItems[section].options.count + 1
+			return globalAppData.sessions[globalAppData.activeSession].sessionItems[section].configuration.options.count + 1
 		} else {
 			return 1
 		}
@@ -174,13 +174,13 @@ class SessionTableViewController: UITableViewController, UISearchResultsUpdating
 			cell?.parentSessionTableViewController = self
             cell?.cellImage.image = UIImage(data: item.imageData)
 			cell?.cellTitle.text = item.title
-			cell?.cellSubtitle.text = "\(item.price.clean)€, \(item.sold.reduce(0, +)) sold"
-			cell?.itemOptions = item.options
+			cell?.cellSubtitle.text = "\(item.price.clean)€, \(item.configuration.sold.reduce(0, +)) sold"
+			cell?.itemOptions = item.configuration.options
 			cell?.editingAccessoryType = .disclosureIndicator
 			return cell!
 		} else {
 			let cell = tableView.dequeueReusableCell(withIdentifier: "SubCell") as? SessionTableViewSubCell
-			cell?.textLabel?.text = globalAppData.sessions[globalAppData.activeSession].sessionItems[indexPath.section].options[dataIndex]
+			cell?.textLabel?.text = globalAppData.sessions[globalAppData.activeSession].sessionItems[indexPath.section].configuration.options[dataIndex]
 			return cell!
 		}
 	}

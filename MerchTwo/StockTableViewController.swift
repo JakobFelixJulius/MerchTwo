@@ -156,7 +156,7 @@ class StockTableViewController: UITableViewController, UISearchResultsUpdating {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if globalAppData.stock.stockItems[section].opened {
-            return globalAppData.stock.stockItems[section].options.count + 1
+            return globalAppData.stock.stockItems[section].configuration.options.count + 1
         } else {
             return 1
         }
@@ -174,7 +174,7 @@ class StockTableViewController: UITableViewController, UISearchResultsUpdating {
             return cell!
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SubCell") as? SessionTableViewSubCell
-            cell?.textLabel?.text = globalAppData.stock.stockItems[indexPath.section].options[dataIndex]
+            cell?.textLabel?.text = globalAppData.stock.stockItems[indexPath.section].configuration.options[dataIndex]
             return cell!
         }
     }

@@ -15,6 +15,7 @@
 		B235D11B2165F3C900EDF439 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B235D11A2165F3C900EDF439 /* Assets.xcassets */; };
 		B235D11E2165F3C900EDF439 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B235D11C2165F3C900EDF439 /* LaunchScreen.storyboard */; };
 		B2382F8421707D0A00757FE2 /* ItemDetailViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2382F8321707D0A00757FE2 /* ItemDetailViewCell.swift */; };
+		B2382F862170A5A900757FE2 /* ItemDetailViewOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2382F852170A5A900757FE2 /* ItemDetailViewOptionCell.swift */; };
 		B26A18642165FB1E00D15941 /* StockTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26A18632165FB1E00D15941 /* StockTableViewController.swift */; };
 		B26A1868216637DB00D15941 /* SessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26A1867216637DB00D15941 /* SessionTableViewCell.swift */; };
 		B26A186A216637E700D15941 /* StockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26A1869216637E700D15941 /* StockTableViewCell.swift */; };
@@ -36,6 +37,7 @@
 		B235D11D2165F3C900EDF439 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B235D11F2165F3C900EDF439 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B2382F8321707D0A00757FE2 /* ItemDetailViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewCell.swift; sourceTree = "<group>"; };
+		B2382F852170A5A900757FE2 /* ItemDetailViewOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewOptionCell.swift; sourceTree = "<group>"; };
 		B26A18632165FB1E00D15941 /* StockTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockTableViewController.swift; sourceTree = "<group>"; };
 		B26A1867216637DB00D15941 /* SessionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
 		B26A1869216637E700D15941 /* StockTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockTableViewCell.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				B26A1869216637E700D15941 /* StockTableViewCell.swift */,
 				8D9167A621695A7C00195D04 /* structs.swift */,
 				B2382F8321707D0A00757FE2 /* ItemDetailViewCell.swift */,
+				B2382F852170A5A900757FE2 /* ItemDetailViewOptionCell.swift */,
 				B29C7F68216F5A8600118058 /* ItemDetailViewHeaderCell.swift */,
 				B2A4EBDC216B632F00F1BF6E /* ItemDetailViewController.swift */,
 				B235D1172165F3C900EDF439 /* Main.storyboard */,
@@ -173,6 +176,7 @@
 				B2A4EBDD216B632F00F1BF6E /* ItemDetailViewController.swift in Sources */,
 				B295FE83216E2D8200F156AA /* SelectSessionItemsCell.swift in Sources */,
 				8DEE7677216EA6C20086A173 /* TabBarController.swift in Sources */,
+				B2382F862170A5A900757FE2 /* ItemDetailViewOptionCell.swift in Sources */,
 				B2382F8421707D0A00757FE2 /* ItemDetailViewCell.swift in Sources */,
 				B26A186C216649CA00D15941 /* SessionTableViewSubCell.swift in Sources */,
 				B235D1162165F3C900EDF439 /* SessionTableViewController.swift in Sources */,

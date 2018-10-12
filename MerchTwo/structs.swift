@@ -10,15 +10,20 @@ import Foundation
 import UIKit
 
 //--------------------------------------------------------------
+struct ItemConfiguration: Codable {
+	var options = [String]()
+	var stock = [Int]()
+	var sold = [Int]()
+}
+
+//--------------------------------------------------------------
 struct ItemData: Codable {
 	var id = String()
     var opened = Bool()
     var imageData = Data()
     var title = String()
-    var options = [String]()
 	var price = Float()
-    var stock = [Int]()
-    var sold = [Int]()
+    var configuration = ItemConfiguration()
 }
 
 //--------------------------------------------------------------

@@ -8,18 +8,18 @@
 
 import UIKit
 
-class ItemDetailViewCell: UITableViewCell {
+class ItemDetailViewCell: UITableViewCell, UITextFieldDelegate {
 	
 	@IBOutlet weak var cellTextField: UITextField!
 	
 	override func awakeFromNib() {
 		super.awakeFromNib()
+		self.cellTextField.delegate = self
 	}
 	
-//	override func setSelected(_ selected: Bool, animated: Bool) {
-//		super.setSelected(selected, animated: animated)
-//
-//		// Configure the view for the selected state
-//	}
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		endEditing(true)
+		return true
+	}
 }
 

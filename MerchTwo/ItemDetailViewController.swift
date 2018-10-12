@@ -77,7 +77,17 @@ class ItemDetailViewController: UIViewController, UINavigationControllerDelegate
 	}
 	
 	@objc func addOption(_ sender: Any) {
-		print("adding option")
+		
+		
+		item.configuration.options.append("new option")
+		item.configuration.stock.append(0)
+
+		// Appending new item to table view
+		self.tableView.beginUpdates()
+		let indexPath1 = IndexPath(row: item.configuration.options.count - 1, section: 2)
+		let indexPath2 = IndexPath(row: item.configuration.stock.count - 1, section: 3)
+		self.tableView.insertRows(at: [indexPath1, indexPath2], with: .automatic)
+		self.tableView.endUpdates()
 	}
 	
 	@objc func done(_ sender: Any) {
@@ -112,8 +122,6 @@ class ItemDetailViewController: UIViewController, UINavigationControllerDelegate
 		if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
 			let imageData:Data = UIImagePNGRepresentation(image)! as Data
 			item.imageData = imageData
-			//let customCell = self.tableView.headerView(forSection: 0)
-			//self.updateHeaderView(headerViewCell: customCell!, section: 0)
 		} else {
 			print("There was a problem getting the image")
 		}
@@ -135,22 +143,29 @@ class ItemDetailViewController: UIViewController, UINavigationControllerDelegate
 		} else if section == 1 {
 			return 1
 		} else {
-			return 3
+			return item.configuration.options.count/* == 0 ? 1 : item.options.count*/
 		}
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? ItemDetailViewCell
-		return cell!
+		if indexPath.section == 1 {
+			let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? ItemDetailViewCell
+			cell?.cellTextField.placeholder = "add an item title"
+			return cell!
+			
+		} else if indexPath.section == 2{
+			let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? ItemDetailViewCell
+			cell?.cellTextField.placeholder = "add an option"
+			return cell!
+		} else {
+			let cell = tableView.dequeueReusableCell(withIdentifier: "OptionCell") as? ItemDetailViewOptionCell
+			cell?.cellTextField.placeholder = "add a stock for this option"
+			return cell!
+		}
 	}
 	
 	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		return titleNames[section]
-	}
-	
-	func updateHeaderView(headerViewCell:ItemDetailViewHeaderCell, section: Int) {
-		headerViewCell.cellImage.image = UIImage(data: item.imageData)
-		headerViewCell.cellTitle.text = item.title
 	}
 	
 	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
@@ -158,8 +173,6 @@ class ItemDetailViewController: UIViewController, UINavigationControllerDelegate
 		// This is where you would change section header content
 		if section == 0 {
 			let cell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell") as? ItemDetailViewHeaderCell
-			
-			self.updateHeaderView(headerViewCell: cell!, section: section)
 			
 			let pictureTap = UITapGestureRecognizer(target: self, action: #selector(ItemDetailViewController.imageTapped(_:)))
 			cell?.cellImage.addGestureRecognizer(pictureTap)
