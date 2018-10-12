@@ -28,6 +28,10 @@ class SessionTableViewController: UITableViewController, UISearchResultsUpdating
 	
 	override func viewWillAppear(_ animated: Bool) {
 		self.tableView.reloadData()
+		
+		if self.tableView.isEditing {
+			editSession(Any.self)
+		}
 	}
     
     func setupTabAndToolBar() {
@@ -41,13 +45,14 @@ class SessionTableViewController: UITableViewController, UISearchResultsUpdating
 		var right1 = UIBarButtonItem()
 		var right2 = UIBarButtonItem()
 		if self.tableView.isEditing {
+			self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(editSession(_:)))
 			right1 = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addItem(_:)))
 		} else {
+			self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editSession(_:)))
 			right1 = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(saveSession(_:)))
 			right2 = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(newSession(_:)))
 		}
         self.navigationItem.rightBarButtonItems = [right1, right2]
-		self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: (self.tableView.isEditing ? "Done" : "Edit"), style: .plain, target: self, action: #selector(editSession(_:)))
 		self.navigationItem.title = "Berlin: 0€"
 		
 		navigationController?.navigationBar.prefersLargeTitles = true

@@ -26,7 +26,13 @@ class StockTableViewController: UITableViewController, UISearchResultsUpdating {
     }
 	
 	override func viewWillAppear(_ animated: Bool) {
+		// since ItemDetailViewController is hiding it
+		self.navigationController?.setToolbarHidden(false, animated: true)
 		self.tableView.reloadData()
+		
+		if self.tableView.isEditing {
+			editSession(Any.self)
+		}
 	}
     
     func setupTabAndToolBar() {
@@ -37,11 +43,11 @@ class StockTableViewController: UITableViewController, UISearchResultsUpdating {
     }
     
     func setupNavBar() {
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: (self.tableView.isEditing ? "Done" : "Edit"), style: .plain, target: self, action: #selector(editSession(_:)))
-        
         if self.tableView.isEditing {
+			self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(editSession(_:)))
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addItem(_:)))
         } else {
+			self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editSession(_:)))
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(saveStock(_:)))
         }
         self.navigationItem.title = "Stock"
@@ -80,9 +86,9 @@ class StockTableViewController: UITableViewController, UISearchResultsUpdating {
     }
 	
 	@objc func editSession(_ sender: Any) {
-        self.tableView.setEditing(!self.tableView.isEditing, animated: true)
-        self.tabBarController?.tabBar.isHidden = self.tableView.isEditing
-        setupNavBar()
+		self.tableView.setEditing(!self.tableView.isEditing, animated: true)
+		self.tabBarController?.tabBar.isHidden = self.tableView.isEditing
+		setupNavBar()
 	}
 	
 	@objc func addItem(_ sender: Any) {

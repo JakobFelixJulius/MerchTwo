@@ -10,18 +10,24 @@ import UIKit
 
 class ItemDetailViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITableViewDelegate, UITableViewDataSource {
 	
+	
+	@IBOutlet weak var tableView: UITableView!
 	var item = ItemData()
     var addItem = Bool()
+	var titleNames = ["", "Title", "Options", "Stock"]
+	let imagePickerController = UIImagePickerController()
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		navigationController?.navigationBar.prefersLargeTitles = false
-        
-        if addItem {
-            self.title = "Add"
-        } else {
-            self.title = "Details"
-        }
+		if addItem {
+			item.imageData = UIImagePNGRepresentation(UIImage(named: "tshirt1.png")!)! as Data
+			item.title = "New Item"
+		}
+		
+		setupTabAndToolBar()
+		setupNavBar()
+		setupImagePicker()
 	}
 	
 	override func didReceiveMemoryWarning() {
@@ -37,31 +43,62 @@ class ItemDetailViewController: UIViewController, UINavigationControllerDelegate
 		}
 	}
 	
+	func setupNavBar() {
+		navigationController?.setNavigationBarHidden(false, animated: true)
+		navigationController?.navigationBar.prefersLargeTitles = false
+		navigationItem.hidesBackButton = true
+		self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done(_:)))
+		self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add Option", style: .plain, target: self, action: #selector(addOption(_:)))
+		
+		if addItem {
+			self.navigationItem.title = "Add"
+		} else {
+			self.navigationItem.title = "Details"
+		}
+	}
+	
+	func setupTabAndToolBar() {
+		self.tabBarController?.tabBar.isHidden = true
+		self.navigationController?.setToolbarHidden(true, animated: true)
+//		let addOption = UIBarButtonItem(title: "Add Option", style: .plain, target: self, action: #selector(addOption(_:)))
+//		let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+//		toolbarItems = [addOption, spacer]
+	}
+	
+	func setupImagePicker() {
+		imagePickerController.delegate = self
+		imagePickerController.allowsEditing = false
+		
+		if let popoverController = self.popoverPresentationController {
+			popoverController.sourceView = self.view
+			popoverController.sourceRect = CGRect(x: (self.view.bounds.midX), y: (self.view.bounds.midY), width: 0, height: 0)
+			popoverController.permittedArrowDirections = []
+		}
+	}
+	
+	@objc func addOption(_ sender: Any) {
+		print("adding option")
+	}
+	
+	@objc func done(_ sender: Any) {
+		self.navigationController?.popToRootViewController(animated: true)
+	}
+	
 	@objc func imageTapped(_ sender: Any) {
 		createAlert(title: "Would you like to import or take a picture?", message: "You can import images from your Camera Roll or take a picture.", options: ["Camera Roll", "Take a Picture"], sender: sender)
 	}
 	
 	func createAlert(title: String, message: String, options: [String], sender: Any) {
 		let alert = UIAlertController(title: "Would you like to import or take a picture?", message: "You can import images from your Camera Roll or take a picture.", preferredStyle: .actionSheet)
-		
-		let imagePickerController = UIImagePickerController()
-		imagePickerController.delegate = self
-		imagePickerController.allowsEditing = false
-        
-        if let popoverController = alert.popoverPresentationController {
-            popoverController.sourceView = self.view
-            popoverController.sourceRect = CGRect(x: (self.view.bounds.midX), y: (self.view.bounds.midY), width: 0, height: 0)
-            popoverController.permittedArrowDirections = []
-        }
-		
+
 		alert.addAction(UIAlertAction(title: "Camera Roll", style: .default , handler:{ (UIAlertAction)in
-			imagePickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary
-			self.present(imagePickerController, animated: true, completion: nil)
+			self.imagePickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary
+			self.present(self.imagePickerController, animated: true, completion: nil)
 		}))
 		
 		alert.addAction(UIAlertAction(title: "Take a Picture", style: .default , handler:{ (UIAlertAction)in
-            imagePickerController.sourceType = UIImagePickerControllerSourceType.camera
-			self.present(imagePickerController, animated: true, completion: nil)
+            self.imagePickerController.sourceType = UIImagePickerControllerSourceType.camera
+			self.present(self.imagePickerController, animated: true, completion: nil)
 		}))
 		
 		alert.addAction(UIAlertAction(title: "Abbruch", style: .cancel, handler:{ (UIAlertAction)in
@@ -75,7 +112,8 @@ class ItemDetailViewController: UIViewController, UINavigationControllerDelegate
 		if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
 			let imageData:Data = UIImagePNGRepresentation(image)! as Data
 			item.imageData = imageData
-			//itemImage.image = image
+			//let customCell = self.tableView.headerView(forSection: 0)
+			//self.updateHeaderView(headerViewCell: customCell!, section: 0)
 		} else {
 			print("There was a problem getting the image")
 		}
@@ -102,13 +140,17 @@ class ItemDetailViewController: UIViewController, UINavigationControllerDelegate
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
-		cell?.textLabel?.text = "Item"
+		let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? ItemDetailViewCell
 		return cell!
 	}
 	
 	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		return "Title"
+		return titleNames[section]
+	}
+	
+	func updateHeaderView(headerViewCell:ItemDetailViewHeaderCell, section: Int) {
+		headerViewCell.cellImage.image = UIImage(data: item.imageData)
+		headerViewCell.cellTitle.text = item.title
 	}
 	
 	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
@@ -117,13 +159,7 @@ class ItemDetailViewController: UIViewController, UINavigationControllerDelegate
 		if section == 0 {
 			let cell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell") as? ItemDetailViewHeaderCell
 			
-			cell?.cellImage.image = UIImage(named: "tshirt1.png")
-			
-			if addItem {
-				cell?.cellTitle.text = "New Item"
-			} else {
-				cell?.cellTitle.text = item.title
-			}
+			self.updateHeaderView(headerViewCell: cell!, section: section)
 			
 			let pictureTap = UITapGestureRecognizer(target: self, action: #selector(ItemDetailViewController.imageTapped(_:)))
 			cell?.cellImage.addGestureRecognizer(pictureTap)

@@ -18,6 +18,7 @@ class SelectSessionItemsViewController: UIViewController, UITableViewDelegate, U
 		super.viewDidLoad()
 		
 		tableView.setEditing(true, animated: false)
+		setupNavBar()
 		//setupSearchBar()
 	}
 	
@@ -29,9 +30,32 @@ class SelectSessionItemsViewController: UIViewController, UITableViewDelegate, U
 	override func viewWillAppear(_ animated: Bool) {
 		self.tableView.reloadData()
 	}
+	
+	func setupNavBar() {
+		navigationController?.navigationBar.prefersLargeTitles = false
+		navigationItem.hidesBackButton = true
+		let right = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done1(_:)))
+		self.navigationItem.rightBarButtonItem = right
+		self.navigationItem.title = "Add"
+	}
+	
+	func setupTabAndToolBar() {
+		self.tabBarController?.tabBar.isHidden = true
+		let addOption = UIBarButtonItem(title: "Add Option", style: .plain, target: self, action: #selector(addOption(_:)))
+		let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+		toolbarItems = [addOption, spacer]
+	}
+	
+	@objc func done1(_ sender: Any) {
+		self.navigationController?.popToRootViewController(animated: true)
+	}
 
 	@IBAction func done(_ sender: Any) {
-		dismiss(animated: true, completion: nil)
+		print("done done")
+	}
+	
+	@objc func addOption(_ sender: Any) {
+		print("adding option")
 	}
 	
 //	func setupSearchBar() {
