@@ -90,7 +90,7 @@ class SelectSessionItemsViewController: UIViewController, UITableViewDelegate, U
 //	}
 
 	func numberOfSections(in tableView: UITableView) -> Int {
-		return /*isFiltering() ? filteredItems.count : */globalAppData.sessions[globalAppData.activeSession].sessionItems.count
+		return /*isFiltering() ? filteredItems.count : */globalAppData.stock.stockItems.count
 	}
 
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -99,7 +99,7 @@ class SelectSessionItemsViewController: UIViewController, UITableViewDelegate, U
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? SelectSessionItemCell
-		let item = globalAppData.sessions[globalAppData.activeSession].sessionItems[indexPath.section]
+		let item = globalAppData.stock.stockItems[indexPath.section]
 		cell?.cellImage.image = UIImage(data: item.imageData)
 		cell?.cellTitle.text = item.title
 		return cell!

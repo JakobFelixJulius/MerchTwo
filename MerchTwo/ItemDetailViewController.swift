@@ -38,8 +38,9 @@ class ItemDetailViewController: UIViewController, UINavigationControllerDelegate
 	override func viewWillDisappear(_ animated: Bool) {
 		if !addItem {
 			globalAppData.stock.stockItems[globalAppData.stock.findStockItemIndex(item: item)] = item
-			globalAppData.sessions[globalAppData.activeSession].sessionItems[globalAppData.stock.findStockItemIndex(item: item)] = item
-			// inactive sessions will keep the data of the items when they were active
+			//globalAppData.sessions[globalAppData.activeSession].sessionItems[globalAppData.stock.findStockItemIndex(item: item)] = item
+		} else {
+			globalAppData.stock.stockItems.append(item)
 		}
 	}
 	
@@ -143,7 +144,7 @@ class ItemDetailViewController: UIViewController, UINavigationControllerDelegate
 		} else if section == 1 {
 			return 1
 		} else {
-			return item.configuration.options.count/* == 0 ? 1 : item.options.count*/
+			return item.configuration.options.count == 0 ? 1 : item.configuration.options.count
 		}
 	}
 	

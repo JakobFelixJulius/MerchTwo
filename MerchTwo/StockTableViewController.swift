@@ -154,7 +154,6 @@ class StockTableViewController: UITableViewController, UISearchResultsUpdating {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         if globalAppData.stock.stockItems[section].opened {
             return globalAppData.stock.stockItems[section].configuration.options.count + 1
         } else {
